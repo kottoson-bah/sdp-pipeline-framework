@@ -1,0 +1,403 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Default Step Implementations &mdash; Solutions Delivery Platform  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/banner.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Jenkinsfile Variables" href="jenkinsfile-variables.html" />
+    <link rel="prev" title="Conditional Inheritance" href="conditional-inheritance.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Solutions Delivery Platform
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Pipeline Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../for-framework-devs/index.html">For Framework Developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../for-library-devs/index.html">For Library Developers</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">For SDP Users</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="app-envs.html">Application Environments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app-image-repo.html">Application Image Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conditional-inheritance.html">Conditional Inheritance</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Default Step Implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jenkinsfile-variables.html">Jenkinsfile Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multiple-pipeline-templates.html">Pipeline Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notifiers.html">Notifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdp-image-repo.html">SDP Pipeline Image Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stages.html">Stages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../how-to/index.html">How-To’s</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contribute-to-docs.html">Contribute to the Docs</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Solutions Delivery Platform</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">For SDP Users</a> &raquo;</li>
+        
+      <li>Default Step Implementations</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/pages/for-sdp-users/default-step-implementation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+
+
+
+
+
+<div class="section" id="default-step-implementations">
+<h1>Default Step Implementations<a class="headerlink" href="#default-step-implementations" title="Permalink to this headline">¶</a></h1>
+<p>SDP is built on the idea that libraries will implement functionality of methods
+called at runtime.</p>
+<p>What happens if no library is loaded that implements one of the invoked methods?</p>
+<p>To get around this problem, we implemented the concept of <strong>default step implementations</strong></p>
+<p>This serves a few purposes:</p>
+<ul class="simple">
+<li>SDP does its best to remain opinionless except for enforcing development best practices</li>
+<li>Not every tech stack will necessarily call every method in a pipeline template</li>
+</ul>
+<p>The default step implementation is the method that will get called if no library
+has supplied an implementation of a method.</p>
+<p>Defining Pipeline methods</p>
+<div class="section" id="sdp-default-step-implementation">
+<h2>SDP Default Step Implementation<a class="headerlink" href="#sdp-default-step-implementation" title="Permalink to this headline">¶</a></h2>
+<p>The SDP default step implementation allows you to generically define a pipeline step
+in a <code class="docutils literal"><span class="pre">steps</span></code> block.</p>
+<p>In order for a step to be recognized and default to the defualt step implementation, it
+must appear in the <code class="docutils literal"><span class="pre">pipeline_template_methods</span></code> block of the configuration file or be a
+key inside the <code class="docutils literal"><span class="pre">steps</span></code> block.</p>
+<p>The <a class="reference external" href="https://github.com/boozallen/sdp-pipeline-framework/blob/master/resources/sdp/pipeline_config.groovy">default SDP configuration file</a> defines a set of abstract methods that will default to
+the default step implementation.</p>
+<div class="section" id="leveraging-the-default-step-implmementation">
+<h3>Leveraging the Default Step Implmementation<a class="headerlink" href="#leveraging-the-default-step-implmementation" title="Permalink to this headline">¶</a></h3>
+<p>A <code class="docutils literal"><span class="pre">steps</span></code> block is available for configuration.  Below is an example of configuring the
+default step implementation to act as a unit_test step to run a test suite through maven.</p>
+<div class="code groovy highlight-default"><div class="highlight"><pre><span></span><span class="n">steps</span><span class="p">{</span>
+    <span class="n">unit_test</span><span class="p">{</span>
+        <span class="n">stage</span> <span class="o">=</span> <span class="s2">&quot;Unit Test&quot;</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="s2">&quot;maven&quot;</span>
+        <span class="n">command</span> <span class="o">=</span> <span class="s2">&quot;mvn clean verify&quot;</span>
+        <span class="n">script</span> <span class="o">=</span> <span class="o">./</span><span class="n">tests</span><span class="o">/</span><span class="n">unit_test</span><span class="o">.</span><span class="n">sh</span>
+        <span class="n">stash</span><span class="p">{</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;test-results&quot;</span>
+            <span class="n">includes</span> <span class="o">=</span> <span class="s2">&quot;./target&quot;</span>
+            <span class="n">excludes</span> <span class="o">=</span> <span class="s2">&quot;./src&quot;</span>
+            <span class="n">useDefaultExcludes</span> <span class="o">=</span> <span class="n">false</span>
+            <span class="n">allowEmpty</span> <span class="o">=</span> <span class="n">true</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>With this configuratino in place, <code class="docutils literal"><span class="pre">unit_test()</span></code> will be callable from a pipeline template and will
+run <code class="docutils literal"><span class="pre">mvn</span> <span class="pre">clean</span> <span class="pre">verify</span></code> inside the <code class="docutils literal"><span class="pre">maven</span></code> container image.  The <code class="docutils literal"><span class="pre">./target</span></code> directory will be
+stored for later use by stashing the contents in a stash named <code class="docutils literal"><span class="pre">test-results</span></code>.</p>
+<p>You can name the keys within <code class="docutils literal"><span class="pre">steps</span></code> whatever you please, and they will be callable as methods.</p>
+<p>The configuration options within your defined step:</p>
+<table border="1" class="docutils" id="id3">
+<caption><span class="caption-text">SDP Default Step Configuration</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Description</th>
+<th class="head">Default Value</th>
+<th class="head">Required?</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>stage</td>
+<td>Display name for this step.</td>
+<td>&lt;step_name&gt;</td>
+<td>false</td>
+</tr>
+<tr class="row-odd"><td>image</td>
+<td>Container image to run the step within.</td>
+<td>&#160;</td>
+<td>true</td>
+</tr>
+<tr class="row-even"><td>command</td>
+<td>The shell command to run inside the step container image</td>
+<td>&#160;</td>
+<td>if script is not set</td>
+</tr>
+<tr class="row-odd"><td>script</td>
+<td>The path to a shell script to execute</td>
+<td>&#160;</td>
+<td>if command is not set</td>
+</tr>
+<tr class="row-even"><td>stash.name</td>
+<td>The ID of the resultant stash of files from the step</td>
+<td>&#160;</td>
+<td>required if a stash is to be used</td>
+</tr>
+<tr class="row-odd"><td>stash.includes</td>
+<td>The files to preserve.</td>
+<td><a href="#id1"><span class="problematic" id="id2">**</span></a></td>
+<td>false</td>
+</tr>
+<tr class="row-even"><td>stash.excludes</td>
+<td>The files to ignore.</td>
+<td>&#160;</td>
+<td>false</td>
+</tr>
+<tr class="row-odd"><td>stash.useDefaultExcludes</td>
+<td>Whether to use the default exludes of the Jenkins stash step.</td>
+<td>true</td>
+<td>false</td>
+</tr>
+<tr class="row-even"><td>stash.allowEmpty</td>
+<td>Whether or not the stash may contain no files</td>
+<td>false</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If you allow tenants to define their own generic steps, you’re essentially allowing
+arbitrary code to be run on your build nodes.  This may be a security risk.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If a method is listed in <code class="docutils literal"><span class="pre">pipeline_template_methods</span></code> but not defined in <code class="docutils literal"><span class="pre">steps</span></code>, then
+that method will simply do nothing when called.  If you need a more opinionated default
+step implementation, you can define your own. Please read the next section to see how.</p>
+</div>
+</div>
+</div>
+<div class="section" id="organizational-default-step-implementation">
+<h2>Organizational Default Step Implementation<a class="headerlink" href="#organizational-default-step-implementation" title="Permalink to this headline">¶</a></h2>
+<p>If you would like to provide your own default step as an organization, in your
+pipeline configuration repository create a file <code class="docutils literal"><span class="pre">/vars/org_default_step_implementation.groovy</span></code></p>
+<div class="code groovy highlight-default"><div class="highlight"><pre><span></span><span class="n">void</span> <span class="n">call</span><span class="p">(</span><span class="n">String</span> <span class="n">step</span><span class="p">){</span>
+    <span class="n">println</span> <span class="s2">&quot;org default step, executing method: $</span><span class="si">{step}</span><span class="s2">&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>At this point, the SDP pipeline framework will invoke your method and pass it an argument
+that is the step name.  It’s up to you to do what you will with this.  You can leverage the
+<code class="docutils literal"><span class="pre">steps</span></code> block by accessing it directly via:</p>
+<div class="code groovy highlight-default"><div class="highlight"><pre><span></span><span class="n">void</span> <span class="n">call</span><span class="p">(</span><span class="n">String</span> <span class="n">step</span><span class="p">){</span>
+    <span class="k">def</span> <span class="nf">step_config</span> <span class="o">=</span> <span class="n">pipeline_config</span><span class="p">()</span><span class="o">.</span><span class="n">steps</span><span class="o">.</span><span class="n">getAt</span><span class="p">(</span><span class="n">step</span><span class="p">)</span>
+    <span class="n">println</span> <span class="n">step_config</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="jenkinsfile-variables.html" class="btn btn-neutral float-right" title="Jenkinsfile Variables" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="conditional-inheritance.html" class="btn btn-neutral" title="Conditional Inheritance" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Booz Allen Hamilton. All Rights Reserved. 
+  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Other Versions</span>
+        v: master
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>Branches</dt>
+            <dd><a href="default-step-implementation.html">master</a></dd>
+        </dl>
+    </div>
+</div>
+
+
+  
+
+    
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../',
+              VERSION:'',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/banner.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="For SDP Users" href="../for-sdp-users/index.html" />
@@ -157,7 +158,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="github-enterprise">
+  
+
+
+
+
+
+<div class="section" id="github-enterprise">
 <h1>GitHub Enterprise<a class="headerlink" href="#github-enterprise" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="collect-scm-metadata">
 <h2>Collect SCM Metadata<a class="headerlink" href="#collect-scm-metadata" title="Permalink to this headline">¶</a></h2>
@@ -193,7 +200,7 @@ the library is loaded</p>
 <td>The commit id of the current pipeline run</td>
 </tr>
 <tr class="row-even"><td>GIT_BUILD_CAUSE</td>
-<td>One of <code class="docutils literal notranslate"><span class="pre">commit</span></code>, <code class="docutils literal notranslate"><span class="pre">merge</span></code>, or <code class="docutils literal notranslate"><span class="pre">pr</span></code></td>
+<td>One of <code class="docutils literal"><span class="pre">commit</span></code>, <code class="docutils literal"><span class="pre">merge</span></code>, or <code class="docutils literal"><span class="pre">pr</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -202,7 +209,7 @@ the library is loaded</p>
 <h2>Interact with Remote GitHub Repository<a class="headerlink" href="#interact-with-remote-github-repository" title="Permalink to this headline">¶</a></h2>
 <p>This functionality is typically going to be used by other libraries rather than
 directly by a user or Jenkinsfile.</p>
-<div class="code groovy highlight-default notranslate"><div class="highlight"><pre><span></span>/*
+<div class="code groovy highlight-default"><div class="highlight"><pre><span></span>/*
     @Params:
         url:  remote github url (https)
         cred: jenkins credential ID to access repository
@@ -229,7 +236,7 @@ withGit(String url, String cred){
 </pre></div>
 </div>
 <p><strong>Example</strong></p>
-<div class="code groovy highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">withGit</span> <span class="n">url</span><span class="p">:</span> <span class="s2">&quot;https://github.company.com/my-org/my-cool-repo.git&quot;</span><span class="p">,</span> <span class="n">cred</span><span class="p">:</span> <span class="s2">&quot;cool-repo&quot;</span><span class="p">,</span> <span class="p">{</span>
+<div class="code groovy highlight-default"><div class="highlight"><pre><span></span><span class="n">withGit</span> <span class="n">url</span><span class="p">:</span> <span class="s2">&quot;https://github.company.com/my-org/my-cool-repo.git&quot;</span><span class="p">,</span> <span class="n">cred</span><span class="p">:</span> <span class="s2">&quot;cool-repo&quot;</span><span class="p">,</span> <span class="p">{</span>
     <span class="o">//</span> <span class="n">now</span> <span class="n">inside</span> <span class="n">a</span> <span class="n">node</span> <span class="n">block</span> <span class="k">with</span> <span class="n">the</span> <span class="n">repository</span> <span class="k">as</span> <span class="n">the</span> <span class="n">working</span> <span class="n">directory</span>
     <span class="n">sh</span> <span class="s2">&quot;echo hey &gt;&gt; some_file.text&quot;</span>
     <span class="n">git</span> <span class="n">add</span><span class="p">:</span> <span class="s2">&quot;some_file.text&quot;</span>
@@ -262,7 +269,7 @@ withGit(String url, String cred){
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Booz Allen Hamilton. All Rights Reserved. 
-  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl.
+  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl
 
     </p>
   </div>
@@ -277,25 +284,40 @@ withGit(String url, String cred){
 
   </div>
   
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Other Versions</span>
+        v: master
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>Branches</dt>
+            <dd><a href="../../master/pages/for-library-devs/github_enterprise.html">master</a></dd>
+        </dl>
+    </div>
+</div>
 
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../',
+              VERSION:'',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+    
 
   
 

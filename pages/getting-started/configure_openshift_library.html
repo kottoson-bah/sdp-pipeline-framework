@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/banner.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Create Organizational Pipeline" href="create_org_pipeline.html" />
@@ -166,7 +167,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="configuring-the-openshift-library">
+  
+
+
+
+
+
+<div class="section" id="configuring-the-openshift-library">
 <h1>Configuring the OpenShift Library<a class="headerlink" href="#configuring-the-openshift-library" title="Permalink to this headline">¶</a></h1>
 <p>Your cluster permissions are how you achieve multitenancy with SDP.</p>
 <p>To prepare a multitenant configuration of OpenShift for SDP we need to set up the following:</p>
@@ -179,13 +186,13 @@
 </ul>
 <div class="section" id="preparing-the-openshift-environment">
 <h2>Preparing The OpenShift Environment<a class="headerlink" href="#preparing-the-openshift-environment" title="Permalink to this headline">¶</a></h2>
-<p>We have automated the provisioning of application environments, helm, and a project to archive container images with the appropriate multitenant RBAC configuration via a script in the SDP deployment repository - <code class="docutils literal notranslate"><span class="pre">/resources/helm/provision_app_envs.sh</span></code>.</p>
+<p>We have automated the provisioning of application environments, helm, and a project to archive container images with the appropriate multitenant RBAC configuration via a script in the SDP deployment repository - <code class="docutils literal"><span class="pre">/resources/helm/provision_app_envs.sh</span></code>.</p>
 <p>To see the available options run:</p>
-<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bash</span> <span class="n">provision_app_envs</span><span class="o">.</span><span class="n">sh</span> <span class="o">-</span><span class="n">h</span>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">bash</span> <span class="n">provision_app_envs</span><span class="o">.</span><span class="n">sh</span> <span class="o">-</span><span class="n">h</span>
 </pre></div>
 </div>
-<p>For our example, we will create a set of demo application environments (<code class="docutils literal notranslate"><span class="pre">dev</span></code> and <code class="docutils literal notranslate"><span class="pre">prod</span></code>), and store the images in a project called <code class="docutils literal notranslate"><span class="pre">demo</span></code></p>
-<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bash</span> <span class="n">provision_app_envs</span><span class="o">.</span><span class="n">sh</span> <span class="o">-</span><span class="n">p</span> <span class="n">demo</span> <span class="o">-</span><span class="n">e</span> <span class="n">dev</span> <span class="o">-</span><span class="n">e</span> <span class="n">prod</span> <span class="o">-</span><span class="n">i</span> <span class="n">demo</span>
+<p>For our example, we will create a set of demo application environments (<code class="docutils literal"><span class="pre">dev</span></code> and <code class="docutils literal"><span class="pre">prod</span></code>), and store the images in a project called <code class="docutils literal"><span class="pre">demo</span></code></p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">bash</span> <span class="n">provision_app_envs</span><span class="o">.</span><span class="n">sh</span> <span class="o">-</span><span class="n">p</span> <span class="n">demo</span> <span class="o">-</span><span class="n">e</span> <span class="n">dev</span> <span class="o">-</span><span class="n">e</span> <span class="n">prod</span> <span class="o">-</span><span class="n">i</span> <span class="n">demo</span>
 </pre></div>
 </div>
 <p>This will create the following projects:</p>
@@ -217,10 +224,10 @@
 </table>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">If you modify the command above to create projects with different names, be sure to continue using those names as you follow this guide. For example if you enter <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">provision_app_envs.sh</span> <span class="pre">-p</span> <span class="pre">foo</span> <span class="pre">-e</span> <span class="pre">dev</span> <span class="pre">-e</span> <span class="pre">prod</span> <span class="pre">-i</span> <span class="pre">bar</span></code>, use “foo-tiller” instead of “demo-tiller” and use “bar” for your application_image_repository.</p>
+<p class="last">If you modify the command above to create projects with different names, be sure to continue using those names as you follow this guide. For example if you enter <code class="docutils literal"><span class="pre">bash</span> <span class="pre">provision_app_envs.sh</span> <span class="pre">-p</span> <span class="pre">foo</span> <span class="pre">-e</span> <span class="pre">dev</span> <span class="pre">-e</span> <span class="pre">prod</span> <span class="pre">-i</span> <span class="pre">bar</span></code>, use “foo-tiller” instead of “demo-tiller” and use “bar” for your application_image_repository.</p>
 </div>
 <p>Now, we can begin to configure this in the organizational <em>pipeline_config.groovy</em> file. We will need to add the application environments and configure the OpenShift library.</p>
-<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sdp_image_repository</span> <span class="o">=</span> <span class="s2">&quot;https://docker-registry.default.svc:5000&quot;</span>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">sdp_image_repository</span> <span class="o">=</span> <span class="s2">&quot;https://docker-registry.default.svc:5000&quot;</span>
 <span class="n">sdp_image_repository_credential</span> <span class="o">=</span> <span class="s2">&quot;sdp-jenkins-docker-registry&quot;</span>
 
 <span class="n">application_image_repository</span> <span class="o">=</span> <span class="s2">&quot;docker-registry.default.svc:5000/demo&quot;</span>
@@ -257,9 +264,9 @@
 </div>
 <p><strong>Create a Jenkins Credential with ID ``demo-tiller``</strong></p>
 <p>For the OpenShift library to authenticate and perform a deployment via Helm, it uses a Jenkins credential.</p>
-<p>Follow <a class="reference internal" href="../how-to/add_jenkins_credentials.html#add-credentials-to-jenkins"><span class="std std-ref">this guide</span></a> to create a username/password credential in Jenkins with the username: <code class="docutils literal notranslate"><span class="pre">system:serviceaccount:demo-tiller:tiller</span></code></p>
+<p>Follow <a class="reference internal" href="../how-to/add_jenkins_credentials.html#add-credentials-to-jenkins"><span class="std std-ref">this guide</span></a> to create a username/password credential in Jenkins with the username: <code class="docutils literal"><span class="pre">system:serviceaccount:demo-tiller:tiller</span></code></p>
 <p>To get the password, you’ll have to get a service account token from the tiller service account:</p>
-<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">oc</span> <span class="n">sa</span> <span class="n">get</span><span class="o">-</span><span class="n">token</span> <span class="n">tiller</span> <span class="o">-</span><span class="n">n</span> <span class="n">demo</span><span class="o">-</span><span class="n">tiller</span>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">oc</span> <span class="n">sa</span> <span class="n">get</span><span class="o">-</span><span class="n">token</span> <span class="n">tiller</span> <span class="o">-</span><span class="n">n</span> <span class="n">demo</span><span class="o">-</span><span class="n">tiller</span>
 </pre></div>
 </div>
 <p>copy the token and paste it into Jenkins.</p>
@@ -272,9 +279,9 @@
 <h2>Creating the Helm Configuration Repository<a class="headerlink" href="#creating-the-helm-configuration-repository" title="Permalink to this headline">¶</a></h2>
 <p>To achieve disaster recovery, auditability, rollbacks, and infrastructure as code, the OpenShift library deploys
 applications using Helm from a chart stored in a GitHub repository.</p>
-<p>Create a GitHub repository. This repository can be under any GitHub account or organization, but it makes sense to create the repository inside the GitHub organization created in the first step, or in the same organization as your applications if you opted to use a pre-existing one. Name it whatever you like, but <code class="docutils literal notranslate"><span class="pre">helm-configuration-repository</span></code> makes sense. It can be public or private, so long as the GitHub account Jenkins is using can read <em>and</em> write.</p>
+<p>Create a GitHub repository. This repository can be under any GitHub account or organization, but it makes sense to create the repository inside the GitHub organization created in the first step, or in the same organization as your applications if you opted to use a pre-existing one. Name it whatever you like, but <code class="docutils literal"><span class="pre">helm-configuration-repository</span></code> makes sense. It can be public or private, so long as the GitHub account Jenkins is using can read <em>and</em> write.</p>
 <p>Add this repository to your configuration file, which should now look like:</p>
-<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sdp_image_repository</span> <span class="o">=</span> <span class="s2">&quot;https://docker-registry.default.svc:5000&quot;</span>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">sdp_image_repository</span> <span class="o">=</span> <span class="s2">&quot;https://docker-registry.default.svc:5000&quot;</span>
 <span class="n">sdp_image_repository_credential</span> <span class="o">=</span> <span class="s2">&quot;sdp-jenkins-docker-registry&quot;</span>
 
 <span class="n">application_image_repository</span> <span class="o">=</span> <span class="s2">&quot;docker-registry.default.svc:5000/demo&quot;</span>
@@ -314,9 +321,9 @@ applications using Helm from a chart stored in a GitHub repository.</p>
 </div>
 <div class="section" id="initialize-helm-repository">
 <h2>Initialize Helm Repository<a class="headerlink" href="#initialize-helm-repository" title="Permalink to this headline">¶</a></h2>
-<p>Jenkins will clone this repository and push updates to it to perform deployments and record which versions of container images are deployed to each application environment. You can initialize a helm chart with the <code class="docutils literal notranslate"><span class="pre">helm</span> <span class="pre">create</span></code> command.</p>
+<p>Jenkins will clone this repository and push updates to it to perform deployments and record which versions of container images are deployed to each application environment. You can initialize a helm chart with the <code class="docutils literal"><span class="pre">helm</span> <span class="pre">create</span></code> command.</p>
 <p>Assuming you’ve created an empty GitHub repository for your helm chart, you can run:</p>
-<div class="code shell highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">helm</span> <span class="n">create</span> <span class="o">&lt;</span><span class="n">repo_name</span><span class="o">&gt;</span>
+<div class="code shell highlight-default"><div class="highlight"><pre><span></span><span class="n">helm</span> <span class="n">create</span> <span class="o">&lt;</span><span class="n">repo_name</span><span class="o">&gt;</span>
 <span class="n">cd</span> <span class="o">&lt;</span><span class="n">repo_name</span><span class="o">&gt;</span>
 <span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">origin</span> <span class="o">&lt;</span><span class="n">helm</span> <span class="n">repo</span> <span class="n">url</span><span class="o">&gt;</span>
 <span class="n">git</span> <span class="n">add</span> <span class="o">--</span><span class="nb">all</span>
@@ -332,9 +339,9 @@ applications using Helm from a chart stored in a GitHub repository.</p>
 <div class="section" id="sdp-helm-conventions">
 <h2>SDP Helm Conventions<a class="headerlink" href="#sdp-helm-conventions" title="Permalink to this headline">¶</a></h2>
 <p>SDP pushes and pulls to this chart repository to keep it up to date with the image tags of deployed containers.</p>
-<p>For each application repository that SDP will be building, add this to the values.yaml file under an <code class="docutils literal notranslate"><span class="pre">image_shas</span></code> key.</p>
-<p>For example, if there was a repository called <code class="docutils literal notranslate"><span class="pre">sample-app</span></code>, your <code class="docutils literal notranslate"><span class="pre">values.yaml</span></code> would include:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">image_shas</span><span class="p">:</span>
+<p>For each application repository that SDP will be building, add this to the values.yaml file under an <code class="docutils literal"><span class="pre">image_shas</span></code> key.</p>
+<p>For example, if there was a repository called <code class="docutils literal"><span class="pre">sample-app</span></code>, your <code class="docutils literal"><span class="pre">values.yaml</span></code> would include:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">image_shas</span><span class="p">:</span>
     <span class="n">sample_app</span><span class="p">:</span>
 </pre></div>
 </div>
@@ -343,21 +350,21 @@ applications using Helm from a chart stored in a GitHub repository.</p>
 <p class="last">Because YAML key’s cannot contain hyphens, any hyphens in repository names should be converted to underscores.</p>
 </div>
 <p>Your template would then be able to specify the image for a deployment via:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">image</span><span class="p">:</span> <span class="n">docker</span><span class="o">-</span><span class="n">registry</span><span class="o">.</span><span class="n">default</span><span class="o">.</span><span class="n">svc</span><span class="p">:</span><span class="mi">5000</span><span class="o">/</span><span class="n">demo</span><span class="o">/</span><span class="n">sample</span><span class="o">-</span><span class="n">app</span><span class="p">:{{</span> <span class="o">.</span><span class="n">Values</span><span class="o">.</span><span class="n">image_shas</span><span class="o">.</span><span class="n">sample_app</span> <span class="p">}}</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">image</span><span class="p">:</span> <span class="n">docker</span><span class="o">-</span><span class="n">registry</span><span class="o">.</span><span class="n">default</span><span class="o">.</span><span class="n">svc</span><span class="p">:</span><span class="mi">5000</span><span class="o">/</span><span class="n">demo</span><span class="o">/</span><span class="n">sample</span><span class="o">-</span><span class="n">app</span><span class="p">:{{</span> <span class="o">.</span><span class="n">Values</span><span class="o">.</span><span class="n">image_shas</span><span class="o">.</span><span class="n">sample_app</span> <span class="p">}}</span>
 </pre></div>
 </div>
 <p>At this point, you should take some time to finish fleshing out your Helm chart to reflect how you wish to deploy your app.</p>
 </div>
 <div class="section" id="create-a-values-file-per-environment">
 <h2>Create a Values File Per Environment<a class="headerlink" href="#create-a-values-file-per-environment" title="Permalink to this headline">¶</a></h2>
-<p>In addition to the <em>values.yaml</em> file created when <code class="docutils literal notranslate"><span class="pre">helm</span> <span class="pre">create</span></code> was run, you should make a <em>values.&lt;APP_ENV&gt;.yaml</em> file for each application environment you created at the top of this page. Be sure to substitute <em>&lt;APP_ENV&gt;</em> with the <code class="docutils literal notranslate"><span class="pre">short_name</span></code> of the application environment. For example, if you created a <em>dev</em> and <em>prod</em> environment, you might create those files with the command:</p>
-<p>The purpose of these separate files is so that you can provide your separate configurations (database URLs, names, etc.) for different environments. Now, whenever you use the <code class="docutils literal notranslate"><span class="pre">deploy_to</span> <span class="pre">dev</span></code> step in your pipeline, it will deploy a helm chart using <em>values.dev.yaml</em>.</p>
+<p>In addition to the <em>values.yaml</em> file created when <code class="docutils literal"><span class="pre">helm</span> <span class="pre">create</span></code> was run, you should make a <em>values.&lt;APP_ENV&gt;.yaml</em> file for each application environment you created at the top of this page. Be sure to substitute <em>&lt;APP_ENV&gt;</em> with the <code class="docutils literal"><span class="pre">short_name</span></code> of the application environment. For example, if you created a <em>dev</em> and <em>prod</em> environment, you might create those files with the command:</p>
+<p>The purpose of these separate files is so that you can provide your separate configurations (database URLs, names, etc.) for different environments. Now, whenever you use the <code class="docutils literal"><span class="pre">deploy_to</span> <span class="pre">dev</span></code> step in your pipeline, it will deploy a helm chart using <em>values.dev.yaml</em>.</p>
 <p>The SDP will automatically update the image sha value discussed earlier, but you should now modify the different values.yaml files with environment-specifc variables.</p>
 </div>
 <div class="section" id="example-helm-configuration-with-forked-sdp-website">
 <h2>Example Helm Configuration With Forked SDP-Website<a class="headerlink" href="#example-helm-configuration-with-forked-sdp-website" title="Permalink to this headline">¶</a></h2>
-<p>If you forked the SDP-Website repo earlier to follow along with this guide these are the changes that you would need to make after running the <code class="docutils literal notranslate"><span class="pre">helm</span> <span class="pre">create</span></code> command.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>helm_configuration_repository
+<p>If you forked the SDP-Website repo earlier to follow along with this guide these are the changes that you would need to make after running the <code class="docutils literal"><span class="pre">helm</span> <span class="pre">create</span></code> command.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>helm_configuration_repository
 ├── templates/
 │   ├── _helpers.tpl
 │   ├── frontend.yaml
@@ -370,10 +377,10 @@ applications using Helm from a chart stored in a GitHub repository.</p>
 └── values.yaml
 </pre></div>
 </div>
-<p>Where the following adjustments have been made to files created with the <code class="docutils literal notranslate"><span class="pre">helm</span> <span class="pre">create</span></code> command:</p>
+<p>Where the following adjustments have been made to files created with the <code class="docutils literal"><span class="pre">helm</span> <span class="pre">create</span></code> command:</p>
 <div class="section" id="helpers-tpl">
 <h3>_helpers.tpl<a class="headerlink" href="#helpers-tpl" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{{</span><span class="o">/*</span> <span class="n">Determines</span> <span class="n">Namespace</span> <span class="n">Based</span> <span class="n">on</span> <span class="n">Ephemerality</span> <span class="o">*/</span><span class="p">}}</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{{</span><span class="o">/*</span> <span class="n">Determines</span> <span class="n">Namespace</span> <span class="n">Based</span> <span class="n">on</span> <span class="n">Ephemerality</span> <span class="o">*/</span><span class="p">}}</span>
 <span class="p">{{</span><span class="o">-</span> <span class="n">define</span> <span class="s2">&quot;determine_namespace&quot;</span> <span class="p">}}</span>
 <span class="p">{{</span><span class="o">-</span> <span class="k">if</span> <span class="o">.</span><span class="n">Values</span><span class="o">.</span><span class="n">is_ephemeral</span> <span class="p">}}</span>
 <span class="n">namespace</span><span class="p">:</span> <span class="p">{{</span> <span class="o">.</span><span class="n">Release</span><span class="o">.</span><span class="n">Name</span> <span class="p">}}</span>
@@ -386,19 +393,19 @@ applications using Helm from a chart stored in a GitHub repository.</p>
 </div>
 <div class="section" id="notes-txt">
 <h3>NOTES.txt<a class="headerlink" href="#notes-txt" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Finished</span> <span class="n">installing</span> <span class="n">SDP</span><span class="o">-</span><span class="n">Website</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Finished</span> <span class="n">installing</span> <span class="n">SDP</span><span class="o">-</span><span class="n">Website</span>
 </pre></div>
 </div>
 <p>This file contains text that is displayed after the chart is successfully installed.</p>
 </div>
 <div class="section" id="chart-yaml">
 <h3>Chart.yaml<a class="headerlink" href="#chart-yaml" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">name:</span> <span class="pre">.</span></code> changed to <code class="docutils literal notranslate"><span class="pre">name:</span> <span class="pre">helm-configuration-repository</span></code></p>
+<p><code class="docutils literal"><span class="pre">name:</span> <span class="pre">.</span></code> changed to <code class="docutils literal"><span class="pre">name:</span> <span class="pre">helm-configuration-repository</span></code></p>
 <p>The following files were created manually:</p>
 </div>
 <div class="section" id="frontend-yaml">
 <h3>frontend.yaml<a class="headerlink" href="#frontend-yaml" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kind</span><span class="p">:</span> <span class="n">List</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">kind</span><span class="p">:</span> <span class="n">List</span>
 <span class="n">apiVersion</span><span class="p">:</span> <span class="n">v1</span>
 <span class="n">metadata</span><span class="p">:</span>
   <span class="n">name</span><span class="p">:</span> <span class="n">frontend</span>
@@ -472,15 +479,15 @@ applications using Helm from a chart stored in a GitHub repository.</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last"><code class="docutils literal notranslate"><span class="pre">-</span> <span class="pre">image:</span> <span class="pre">docker-registry.default.svc:5000/demo/sdp-website:{{</span> <span class="pre">.Values.image_shas.sdp_website</span> <span class="pre">}}</span></code> should reflect the repository site in the organizational <em>pipeline_config.groovy</em> file for your <code class="docutils literal notranslate"><span class="pre">application_image_repository</span></code> variable.
-E.g. if you had created your application environments using <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">provision_app_envs.sh</span> <span class="pre">-p</span> <span class="pre">foo</span> <span class="pre">-e</span> <span class="pre">dev</span> <span class="pre">-e</span> <span class="pre">prod</span> <span class="pre">-i</span> <span class="pre">bar</span></code> then your <code class="docutils literal notranslate"><span class="pre">application_image_repository</span></code> in the organizational <em>pipeline_config.groovy</em> file would be look like
-<code class="docutils literal notranslate"><span class="pre">application_image_repository</span> <span class="pre">=</span> <span class="pre">&quot;docker-registry.default.svc:5000/bar&quot;</span></code> so your image value in the above yaml file would look like <code class="docutils literal notranslate"><span class="pre">-</span> <span class="pre">image:</span> <span class="pre">docker-registry.default.svc:5000/bar/sdp-website:{{</span> <span class="pre">.Values.image_shas.sdp_website</span> <span class="pre">}}</span></code>. Note the switch from
+<p class="last"><code class="docutils literal"><span class="pre">-</span> <span class="pre">image:</span> <span class="pre">docker-registry.default.svc:5000/demo/sdp-website:{{</span> <span class="pre">.Values.image_shas.sdp_website</span> <span class="pre">}}</span></code> should reflect the repository site in the organizational <em>pipeline_config.groovy</em> file for your <code class="docutils literal"><span class="pre">application_image_repository</span></code> variable.
+E.g. if you had created your application environments using <code class="docutils literal"><span class="pre">bash</span> <span class="pre">provision_app_envs.sh</span> <span class="pre">-p</span> <span class="pre">foo</span> <span class="pre">-e</span> <span class="pre">dev</span> <span class="pre">-e</span> <span class="pre">prod</span> <span class="pre">-i</span> <span class="pre">bar</span></code> then your <code class="docutils literal"><span class="pre">application_image_repository</span></code> in the organizational <em>pipeline_config.groovy</em> file would be look like
+<code class="docutils literal"><span class="pre">application_image_repository</span> <span class="pre">=</span> <span class="pre">&quot;docker-registry.default.svc:5000/bar&quot;</span></code> so your image value in the above yaml file would look like <code class="docutils literal"><span class="pre">-</span> <span class="pre">image:</span> <span class="pre">docker-registry.default.svc:5000/bar/sdp-website:{{</span> <span class="pre">.Values.image_shas.sdp_website</span> <span class="pre">}}</span></code>. Note the switch from
 <em>/demo/sdp-website</em> to <em>/bar/sdp-website</em>.</p>
 </div>
 </div>
 <div class="section" id="values-dev-yaml">
 <h3>values.dev.yaml<a class="headerlink" href="#values-dev-yaml" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">namespace</span><span class="p">:</span> <span class="n">demo</span><span class="o">-</span><span class="n">dev</span> <span class="c1"># if your tiller server is foo-tiller this is probably foo-dev</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">namespace</span><span class="p">:</span> <span class="n">demo</span><span class="o">-</span><span class="n">dev</span> <span class="c1"># if your tiller server is foo-tiller this is probably foo-dev</span>
 <span class="n">image_shas</span><span class="p">:</span>
     <span class="n">sdp_website</span><span class="p">:</span>
 </pre></div>
@@ -488,7 +495,7 @@ E.g. if you had created your application environments using <code class="docutil
 </div>
 <div class="section" id="values-prod-yaml">
 <h3>values.prod.yaml<a class="headerlink" href="#values-prod-yaml" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">namespace</span><span class="p">:</span> <span class="n">demo</span><span class="o">-</span><span class="n">prod</span> <span class="c1"># if your tiller server is foo-tiller this is probably foo-dev</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">namespace</span><span class="p">:</span> <span class="n">demo</span><span class="o">-</span><span class="n">prod</span> <span class="c1"># if your tiller server is foo-tiller this is probably foo-dev</span>
 <span class="n">image_shas</span><span class="p">:</span>
     <span class="n">sdp_website</span><span class="p">:</span>
 </pre></div>
@@ -518,7 +525,7 @@ E.g. if you had created your application environments using <code class="docutil
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Booz Allen Hamilton. All Rights Reserved. 
-  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl.
+  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl
 
     </p>
   </div>
@@ -533,25 +540,40 @@ E.g. if you had created your application environments using <code class="docutil
 
   </div>
   
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Other Versions</span>
+        v: master
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>Branches</dt>
+            <dd><a href="../../master/pages/getting-started/configure_openshift_library.html">master</a></dd>
+        </dl>
+    </div>
+</div>
 
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../',
+              VERSION:'',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+    
 
   
 

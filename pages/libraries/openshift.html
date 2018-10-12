@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/banner.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="OWASP ZAP" href="owasp_zap.html" />
@@ -165,7 +166,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="openshift">
+  
+
+
+
+
+
+<div class="section" id="openshift">
 <h1>OpenShift<a class="headerlink" href="#openshift" title="Permalink to this headline">¶</a></h1>
 <p>OpenShift is an enterprise grade distribution of Kubernetes built by Red Hat. For information on
 deploying OpenShift inside Booz Allen’s CSN AWS environment, refer to our
@@ -189,7 +196,7 @@ examples, so we’ll be breaking it down per configuration portion.</p>
 <p>The OpenShift URL can be defined in the library spec or on a per application environment basis.</p>
 <p>For example, it’s common to have a cluster for lower environments with a separate cluster for
 production.  You would specify this as follows:</p>
-<div class="code groovy highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">application_environments</span><span class="p">{</span>
+<div class="code groovy highlight-default"><div class="highlight"><pre><span></span><span class="n">application_environments</span><span class="p">{</span>
   <span class="n">dev</span><span class="p">{</span>
     <span class="n">short_name</span> <span class="o">=</span> <span class="s2">&quot;dev&quot;</span>
     <span class="n">long_name</span> <span class="o">=</span> <span class="s2">&quot;Development&quot;</span>
@@ -211,9 +218,9 @@ production.  You would specify this as follows:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>With this configuration, <code class="docutils literal notranslate"><span class="pre">https://openshift.dev.example.com:8443</span></code> would be used when deploying
-to <code class="docutils literal notranslate"><span class="pre">dev</span></code> and <code class="docutils literal notranslate"><span class="pre">test</span></code> while <code class="docutils literal notranslate"><span class="pre">https://openshift.prod.example.com:8443</span></code> would be used when
-deploying to <code class="docutils literal notranslate"><span class="pre">prod</span></code></p>
+<p>With this configuration, <code class="docutils literal"><span class="pre">https://openshift.dev.example.com:8443</span></code> would be used when deploying
+to <code class="docutils literal"><span class="pre">dev</span></code> and <code class="docutils literal"><span class="pre">test</span></code> while <code class="docutils literal"><span class="pre">https://openshift.prod.example.com:8443</span></code> would be used when
+deploying to <code class="docutils literal"><span class="pre">prod</span></code></p>
 </div>
 <div class="section" id="helm-configuration">
 <h3>Helm Configuration<a class="headerlink" href="#helm-configuration" title="Permalink to this headline">¶</a></h3>
@@ -229,16 +236,16 @@ repository, we instead use a configuration repository as our infrastructure as c
 <p><strong>Create Helm Configuration Repository</strong></p>
 <p>You’ll need to create a GitHub repository to store the helm chart for your application(s). See the
 <a class="reference external" href="https://docs.helm.sh/helm/#helm-create">helm docs on provisioning a new chart</a> to get intialize the repository with the skeleton for your chart.</p>
-<p>How you choose to build your helm chart is up to you, you can put every api object in the <code class="docutils literal notranslate"><span class="pre">templates</span></code>
+<p>How you choose to build your helm chart is up to you, you can put every api object in the <code class="docutils literal"><span class="pre">templates</span></code>
 directory or have subcharts for each individual microservice.  SDP doesn’t care, as all it does is clone
 the github repository and deploy the chart using the specified values file.</p>
 <p><strong>Values File Conventions</strong></p>
 <p>Given that we tag container images using the git SHA, SDP will clone your helm configuration repository and
 update a key corresponding to the current version of each container image for each application environment.</p>
-<p>As such, a certain syntax is required in your values file.  You must have an <code class="docutils literal notranslate"><span class="pre">image_shas</span></code> key. SDP will
-automatically add subkeys for each repositories under this <code class="docutils literal notranslate"><span class="pre">image_shas</span></code> with a value that is the git SHA.</p>
+<p>As such, a certain syntax is required in your values file.  You must have an <code class="docutils literal"><span class="pre">image_shas</span></code> key. SDP will
+automatically add subkeys for each repositories under this <code class="docutils literal"><span class="pre">image_shas</span></code> with a value that is the git SHA.</p>
 <p><cite>Given that YAML keys can’t have hypens, hyphens in repository names will be replaced with underscores.</cite></p>
-<div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">image_shas</span><span class="p">:</span>
+<div class="code yaml highlight-default"><div class="highlight"><pre><span></span><span class="n">image_shas</span><span class="p">:</span>
   <span class="n">my_sample_application</span><span class="p">:</span> <span class="n">abcdefgh</span>
   <span class="n">another_repo</span><span class="p">:</span> <span class="n">abcdef</span>
 </pre></div>
@@ -247,10 +254,10 @@ automatically add subkeys for each repositories under this <code class="docutils
 <p><strong>Helm Configurations for the Library</strong></p>
 <p>The helm configuration repository, github credential, tiller namespace, and tiller credential  can be configured
 globally in the library spec and overriden for specific application environments.</p>
-<p>The values file to will default to <code class="docutils literal notranslate"><span class="pre">values.${app_env.short_name}.yaml</span></code>, or can be overridden via <code class="docutils literal notranslate"><span class="pre">app_env.chart_values_file</span></code>.</p>
-<p>The name of the release will default to <code class="docutils literal notranslate"><span class="pre">app_env.short_name</span></code>, or can be overridden via <code class="docutils literal notranslate"><span class="pre">app_env.tiller_release_name</span></code></p>
+<p>The values file to will default to <code class="docutils literal"><span class="pre">values.${app_env.short_name}.yaml</span></code>, or can be overridden via <code class="docutils literal"><span class="pre">app_env.chart_values_file</span></code>.</p>
+<p>The name of the release will default to <code class="docutils literal"><span class="pre">app_env.short_name</span></code>, or can be overridden via <code class="docutils literal"><span class="pre">app_env.tiller_release_name</span></code></p>
 <p>An example of helm configurations:</p>
-<div class="code groovy highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">application_environments</span><span class="p">{</span>
+<div class="code groovy highlight-default"><div class="highlight"><pre><span></span><span class="n">application_environments</span><span class="p">{</span>
   <span class="n">dev</span><span class="p">{</span>
     <span class="n">short_name</span> <span class="o">=</span> <span class="s2">&quot;dev&quot;</span>
     <span class="n">long_name</span> <span class="o">=</span> <span class="s2">&quot;Development&quot;</span>
@@ -340,7 +347,7 @@ globally in the library spec and overriden for specific application environments
 </tr>
 </tbody>
 </table>
-<div class="code groovy highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">application_environments</span><span class="p">{</span>
+<div class="code groovy highlight-default"><div class="highlight"><pre><span></span><span class="n">application_environments</span><span class="p">{</span>
   <span class="n">dev</span><span class="p">{</span>
     <span class="n">long_name</span> <span class="o">=</span> <span class="s2">&quot;Development&quot;</span>
     <span class="n">chart_values_file</span> <span class="o">=</span> <span class="s2">&quot;dev_values.yaml&quot;</span>
@@ -374,7 +381,7 @@ globally in the library spec and overriden for specific application environments
 <ul class="simple">
 <li>Openshift is deployed and accessible from Jenkins</li>
 <li>Helm configuration repository creates</li>
-<li>Values files contain the <code class="docutils literal notranslate"><span class="pre">image_shas</span></code> key convention</li>
+<li>Values files contain the <code class="docutils literal"><span class="pre">image_shas</span></code> key convention</li>
 <li>A Jenkins credential exists to access helm configuration repository</li>
 <li>A Jenkins credential exists to login with OpenShift CLI</li>
 </ul>
@@ -402,7 +409,7 @@ globally in the library spec and overriden for specific application environments
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Booz Allen Hamilton. All Rights Reserved. 
-  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl.
+  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl
 
     </p>
   </div>
@@ -417,25 +424,40 @@ globally in the library spec and overriden for specific application environments
 
   </div>
   
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Other Versions</span>
+        v: master
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>Branches</dt>
+            <dd><a href="../../master/pages/libraries/openshift.html">master</a></dd>
+        </dl>
+    </div>
+</div>
 
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../',
+              VERSION:'',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+    
 
   
 

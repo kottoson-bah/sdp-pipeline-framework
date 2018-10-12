@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/banner.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Default Step Implementations" href="default-step-implementation.html" />
@@ -165,7 +166,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="conditional-inheritance">
+  
+
+
+
+
+
+<div class="section" id="conditional-inheritance">
 <span id="id1"></span><h1>Conditional Inheritance<a class="headerlink" href="#conditional-inheritance" title="Permalink to this headline">¶</a></h1>
 <p>While SDP derives much of its value from the reusable aspect of its design, another
 significant feature is the organizational governance achievable through SDP.</p>
@@ -173,7 +180,7 @@ significant feature is the organizational governance achievable through SDP.</p>
 that’s required.</p>
 <p>SDP configuration files enable organizations to dial up or down the level of
 governance by allowing portions of the configuration to be appended to, or even
-replaced entirely by using the <code class="docutils literal notranslate"><span class="pre">merge</span></code> and <code class="docutils literal notranslate"><span class="pre">override</span></code> keys.</p>
+replaced entirely by using the <code class="docutils literal"><span class="pre">merge</span></code> and <code class="docutils literal"><span class="pre">override</span></code> keys.</p>
 <div class="section" id="overall-precedence">
 <h2>Overall Precedence<a class="headerlink" href="#overall-precedence" title="Permalink to this headline">¶</a></h2>
 <p>There are three configuration files in SDP.</p>
@@ -195,7 +202,7 @@ replaced entirely by using the <code class="docutils literal notranslate"><span 
 <p>The merge key allows you to append tenant configurations to organization configurations.</p>
 <p>This is best illustrated by an example.</p>
 <p>Here is an example snippet from an <strong>organization pipeline_config.groovy</strong> file:</p>
-<div class="code groovy highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">application_environments</span><span class="p">{</span>
+<div class="code groovy highlight-default"><div class="highlight"><pre><span></span><span class="n">application_environments</span><span class="p">{</span>
     <span class="n">merge</span> <span class="o">=</span> <span class="n">true</span>
     <span class="n">dev</span><span class="p">{</span>
         <span class="n">short_name</span> <span class="o">=</span> <span class="s2">&quot;dev&quot;</span>
@@ -205,7 +212,7 @@ replaced entirely by using the <code class="docutils literal notranslate"><span 
 </pre></div>
 </div>
 <p>and here’s an example <strong>tenant pipeline_config.groovy</strong> file:</p>
-<div class="code groovy highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">application_environments</span><span class="p">{</span>
+<div class="code groovy highlight-default"><div class="highlight"><pre><span></span><span class="n">application_environments</span><span class="p">{</span>
     <span class="n">dev</span><span class="p">{</span>
         <span class="n">short_name</span> <span class="o">=</span> <span class="s2">&quot;tenant custom!&quot;</span>
         <span class="n">long_name</span> <span class="o">=</span> <span class="s2">&quot;my own!&quot;</span>
@@ -218,7 +225,7 @@ replaced entirely by using the <code class="docutils literal notranslate"><span 
 </pre></div>
 </div>
 <p>the <strong>aggregated configuration</strong> would then be</p>
-<div class="code groovy highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">application_environments</span><span class="p">{</span>
+<div class="code groovy highlight-default"><div class="highlight"><pre><span></span><span class="n">application_environments</span><span class="p">{</span>
     <span class="n">dev</span><span class="p">{</span>
         <span class="n">short_name</span> <span class="o">=</span> <span class="s2">&quot;dev&quot;</span>
         <span class="n">long_name</span> <span class="o">=</span> <span class="s2">&quot;Development&quot;</span>
@@ -234,15 +241,15 @@ replaced entirely by using the <code class="docutils literal notranslate"><span 
 <p>The organization set merge to true for application environments.  This means that existing
 application environments defined by the organization will not be tampered with but new keys
 can be added.</p>
-<p>The tenant tried to change the <code class="docutils literal notranslate"><span class="pre">dev</span></code> environment and add a <code class="docutils literal notranslate"><span class="pre">prod</span></code> environment.  The aggregation
-did not fail, but only accepted the addition of a new <code class="docutils literal notranslate"><span class="pre">prod</span></code> key.</p>
+<p>The tenant tried to change the <code class="docutils literal"><span class="pre">dev</span></code> environment and add a <code class="docutils literal"><span class="pre">prod</span></code> environment.  The aggregation
+did not fail, but only accepted the addition of a new <code class="docutils literal"><span class="pre">prod</span></code> key.</p>
 </div>
 <div class="section" id="overriding">
 <h2>Overriding<a class="headerlink" href="#overriding" title="Permalink to this headline">¶</a></h2>
 <p>The override key allows a tenant to replace an existing configuration with their own.</p>
 <p>Let’s use the same example from before except change the merge to an override.</p>
 <p>Here is an example snippet from an <strong>organization pipeline_config.groovy</strong> file:</p>
-<div class="code groovy highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">application_environments</span><span class="p">{</span>
+<div class="code groovy highlight-default"><div class="highlight"><pre><span></span><span class="n">application_environments</span><span class="p">{</span>
     <span class="n">override</span> <span class="o">=</span> <span class="n">true</span>
     <span class="n">dev</span><span class="p">{</span>
         <span class="n">short_name</span> <span class="o">=</span> <span class="s2">&quot;dev&quot;</span>
@@ -252,7 +259,7 @@ did not fail, but only accepted the addition of a new <code class="docutils lite
 </pre></div>
 </div>
 <p>The <strong>tenant pipeline_config.groovy</strong> file can remain the same:</p>
-<div class="code groovy highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">application_environments</span><span class="p">{</span>
+<div class="code groovy highlight-default"><div class="highlight"><pre><span></span><span class="n">application_environments</span><span class="p">{</span>
     <span class="n">dev</span><span class="p">{</span>
         <span class="n">short_name</span> <span class="o">=</span> <span class="s2">&quot;tenant custom!&quot;</span>
         <span class="n">long_name</span> <span class="o">=</span> <span class="s2">&quot;my own!&quot;</span>
@@ -265,7 +272,7 @@ did not fail, but only accepted the addition of a new <code class="docutils lite
 </pre></div>
 </div>
 <p>The <strong>aggregated pipeline configuration</strong> will now be:</p>
-<div class="code groovy highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">application_environments</span><span class="p">{</span>
+<div class="code groovy highlight-default"><div class="highlight"><pre><span></span><span class="n">application_environments</span><span class="p">{</span>
     <span class="n">dev</span><span class="p">{</span>
         <span class="n">short_name</span> <span class="o">=</span> <span class="s2">&quot;tenant custom!&quot;</span>
         <span class="n">long_name</span> <span class="o">=</span> <span class="s2">&quot;my own!&quot;</span>
@@ -282,7 +289,7 @@ did not fail, but only accepted the addition of a new <code class="docutils lite
 the organization’s defined application_environments.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The ability to use the <code class="docutils literal notranslate"><span class="pre">merge</span></code> and <code class="docutils literal notranslate"><span class="pre">override</span></code> keys is not specific to any
+<p class="last">The ability to use the <code class="docutils literal"><span class="pre">merge</span></code> and <code class="docutils literal"><span class="pre">override</span></code> keys is not specific to any
 field in particular.  You can set these values anywhere in the file, and they will
 be handled appropriately.</p>
 </div>
@@ -310,7 +317,7 @@ be handled appropriately.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Booz Allen Hamilton. All Rights Reserved. 
-  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl.
+  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl
 
     </p>
   </div>
@@ -325,25 +332,40 @@ be handled appropriately.</p>
 
   </div>
   
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Other Versions</span>
+        v: master
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>Branches</dt>
+            <dd><a href="../../master/pages/for-sdp-users/conditional-inheritance.html">master</a></dd>
+        </dl>
+    </div>
+</div>
 
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../',
+              VERSION:'',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+    
 
   
 

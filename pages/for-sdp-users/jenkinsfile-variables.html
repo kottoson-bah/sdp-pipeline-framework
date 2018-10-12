@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/banner.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Pipeline Templates" href="multiple-pipeline-templates.html" />
@@ -165,15 +166,21 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="jenkinsfile-variables">
+  
+
+
+
+
+
+<div class="section" id="jenkinsfile-variables">
 <h1>Jenkinsfile Variables<a class="headerlink" href="#jenkinsfile-variables" title="Permalink to this headline">¶</a></h1>
 <p>Our goal is to make the pipeline templates as readable as possible.</p>
 <p>To help with this, we’ve added a portion of the configuration file that can be
 used to define variables for use in your Jenkinsfile.</p>
 <p>We currently use this to define the branch name regular expressions to help with
-the <code class="docutils literal notranslate"><span class="pre">github-enterprise</span></code> library.</p>
-<p>Use the <code class="docutils literal notranslate"><span class="pre">keywords</span></code> block to add variables to your Jenkinsfile.</p>
-<div class="code groovy highlight-default notranslate"><div class="highlight"><pre><span></span>keywords{
+the <code class="docutils literal"><span class="pre">github-enterprise</span></code> library.</p>
+<p>Use the <code class="docutils literal"><span class="pre">keywords</span></code> block to add variables to your Jenkinsfile.</p>
+<div class="code groovy highlight-default"><div class="highlight"><pre><span></span>keywords{
     master  =  /^[Mm]aster$/
     develop =  /^[Dd]evelop(ment|er|)$/
     hotfix  =  /^[Hh]ot[Ff]ix-/
@@ -182,12 +189,12 @@ the <code class="docutils literal notranslate"><span class="pre">github-enterpri
 </pre></div>
 </div>
 <p>then, from within your Jenkinsfile (assuming you’ve loaded the github-enterprise library) you could say:</p>
-<div class="code groovy highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">on_pull_request</span> <span class="n">from</span><span class="p">:</span> <span class="n">develop</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="n">master</span><span class="p">,</span> <span class="p">{</span>
+<div class="code groovy highlight-default"><div class="highlight"><pre><span></span><span class="n">on_pull_request</span> <span class="n">from</span><span class="p">:</span> <span class="n">develop</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="n">master</span><span class="p">,</span> <span class="p">{</span>
 
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>where the <code class="docutils literal notranslate"><span class="pre">develop</span></code> and <code class="docutils literal notranslate"><span class="pre">master</span></code> keywords are regular expressions defined in the configuration file and
+<p>where the <code class="docutils literal"><span class="pre">develop</span></code> and <code class="docutils literal"><span class="pre">master</span></code> keywords are regular expressions defined in the configuration file and
 imported into the Jenkinsfile as variables.</p>
 </div>
 
@@ -212,7 +219,7 @@ imported into the Jenkinsfile as variables.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Booz Allen Hamilton. All Rights Reserved. 
-  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl.
+  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl
 
     </p>
   </div>
@@ -227,25 +234,40 @@ imported into the Jenkinsfile as variables.</p>
 
   </div>
   
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Other Versions</span>
+        v: master
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>Branches</dt>
+            <dd><a href="../../master/pages/for-sdp-users/jenkinsfile-variables.html">master</a></dd>
+        </dl>
+    </div>
+</div>
 
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../',
+              VERSION:'',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+    
 
   
 

@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/banner.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Notifiers" href="notifiers.html" />
@@ -165,7 +166,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="pipeline-templates">
+  
+
+
+
+
+
+<div class="section" id="pipeline-templates">
 <h1>Pipeline Templates<a class="headerlink" href="#pipeline-templates" title="Permalink to this headline">¶</a></h1>
 <p>Pipeline templates (Jenkinsfiles) define the business logic of your pipeline. They’re responsible for
 deciding what happens when and invoking the generic pipeline steps that need to be called.</p>
@@ -173,8 +180,8 @@ deciding what happens when and invoking the generic pipeline steps that need to 
 <div class="section" id="defining-an-organizational-jenkinsfile">
 <h2>Defining an Organizational Jenkinsfile<a class="headerlink" href="#defining-an-organizational-jenkinsfile" title="Permalink to this headline">¶</a></h2>
 <p>SDP provides a <a class="reference external" href="https://github.com/boozallen/sdp-pipeline-framework/blob/master/resources/sdp/Jenkinsfile">default Jenkinsfile</a>.  If you wish to override this with your own, you can do so by
-creating a <code class="docutils literal notranslate"><span class="pre">Jenkinsfile</span></code> in your organizational pipeline configuration repository located at
-<code class="docutils literal notranslate"><span class="pre">/resources/sdp-org/Jenkinsfile</span></code>.</p>
+creating a <code class="docutils literal"><span class="pre">Jenkinsfile</span></code> in your organizational pipeline configuration repository located at
+<code class="docutils literal"><span class="pre">/resources/sdp-org/Jenkinsfile</span></code>.</p>
 <p>The presence of this file is all that’s required to override the default SDP pipeline.</p>
 </div>
 <div class="section" id="defining-additional-pipeline-templates">
@@ -184,11 +191,11 @@ creating a <code class="docutils literal notranslate"><span class="pre">Jenkinsf
 for having multiple templates defined include:
 * Pipeline template per branching strategy
 * Pipeline template per type of workflow (Data, Infrastructure, Software)</p>
-<p>To create multiple pipeline templates, create a directory called <code class="docutils literal notranslate"><span class="pre">pipeline_templates</span></code> in your pipeline
-configuration repository under <code class="docutils literal notranslate"><span class="pre">/resources/sdp-org</span></code>.</p>
-<p>Within this directory, any file can be referenced by tenants in their repository’s <code class="docutils literal notranslate"><span class="pre">pipeline_config.groovy</span></code> file.</p>
+<p>To create multiple pipeline templates, create a directory called <code class="docutils literal"><span class="pre">pipeline_templates</span></code> in your pipeline
+configuration repository under <code class="docutils literal"><span class="pre">/resources/sdp-org</span></code>.</p>
+<p>Within this directory, any file can be referenced by tenants in their repository’s <code class="docutils literal"><span class="pre">pipeline_config.groovy</span></code> file.</p>
 <p>For example, if my pipeline configuration repository contained:</p>
-<div class="code groovy highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">|</span> <span class="n">resources</span>
+<div class="code groovy highlight-default"><div class="highlight"><pre><span></span><span class="o">|</span> <span class="n">resources</span>
 <span class="o">|---</span> <span class="n">sdp</span><span class="o">-</span><span class="n">org</span>
 <span class="o">|------</span> <span class="n">Jenkinsfile</span>
 <span class="o">|------</span> <span class="n">pipeline_templates</span>
@@ -222,13 +229,13 @@ configuration repository under <code class="docutils literal notranslate"><span 
 </table>
 <p>Then application development teams would not need to say anything in their configuration file, given that
 the default organizational pipeline template is for software.</p>
-<p>The data repositories would configure their pipeline templating by setting <code class="docutils literal notranslate"><span class="pre">pipeline_template</span></code> equal to path relative
-to the <code class="docutils literal notranslate"><span class="pre">pipeline_templates</span></code> directory.</p>
-<div class="code groovy highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline_template</span> <span class="o">=</span> <span class="s2">&quot;data&quot;</span>
+<p>The data repositories would configure their pipeline templating by setting <code class="docutils literal"><span class="pre">pipeline_template</span></code> equal to path relative
+to the <code class="docutils literal"><span class="pre">pipeline_templates</span></code> directory.</p>
+<div class="code groovy highlight-default"><div class="highlight"><pre><span></span><span class="n">pipeline_template</span> <span class="o">=</span> <span class="s2">&quot;data&quot;</span>
 </pre></div>
 </div>
 <p>and the infrastructure teams would do the same:</p>
-<div class="code groovy highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline_template</span> <span class="o">=</span> <span class="s2">&quot;infrastructure&quot;</span>
+<div class="code groovy highlight-default"><div class="highlight"><pre><span></span><span class="n">pipeline_template</span> <span class="o">=</span> <span class="s2">&quot;infrastructure&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -236,11 +243,11 @@ to the <code class="docutils literal notranslate"><span class="pre">pipeline_tem
 <h2>Tenants Bringing Their Own Jenkinsfiles<a class="headerlink" href="#tenants-bringing-their-own-jenkinsfiles" title="Permalink to this headline">¶</a></h2>
 <p>If an organization wants to leverage the reusability of SDP without needing
 the governance of a centralized pipeline definition, they can allow tenants
-to bring their own <code class="docutils literal notranslate"><span class="pre">Jenkinsfile</span></code> by setting:</p>
-<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">allow_tenant_jenkinsfile</span> <span class="o">=</span> <span class="n">true</span>
+to bring their own <code class="docutils literal"><span class="pre">Jenkinsfile</span></code> by setting:</p>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">allow_tenant_jenkinsfile</span> <span class="o">=</span> <span class="n">true</span>
 </pre></div>
 </div>
-<p>Tenants would then be able to define a <code class="docutils literal notranslate"><span class="pre">Jenkinsfile</span></code> at the root of their
+<p>Tenants would then be able to define a <code class="docutils literal"><span class="pre">Jenkinsfile</span></code> at the root of their
 repository.</p>
 </div>
 </div>
@@ -266,7 +273,7 @@ repository.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Booz Allen Hamilton. All Rights Reserved. 
-  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl.
+  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl
 
     </p>
   </div>
@@ -281,25 +288,40 @@ repository.</p>
 
   </div>
   
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Other Versions</span>
+        v: master
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>Branches</dt>
+            <dd><a href="../../master/pages/for-sdp-users/multiple-pipeline-templates.html">master</a></dd>
+        </dl>
+    </div>
+</div>
 
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../',
+              VERSION:'',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+    
 
   
 

@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/banner.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Deploy SDP" href="deploy_sdp.html" />
@@ -166,9 +167,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="configure-jenkins-chart">
+  
+
+
+
+
+
+<div class="section" id="configure-jenkins-chart">
 <h1>Configure Jenkins Chart<a class="headerlink" href="#configure-jenkins-chart" title="Permalink to this headline">¶</a></h1>
-<p>With your pipeline configuration repository created, you can now deploy the Solutions Delivery Platform by configuring the SDP chart’s <code class="docutils literal notranslate"><span class="pre">values.yaml</span></code> file and running the installer script.</p>
+<p>With your pipeline configuration repository created, you can now deploy the Solutions Delivery Platform by configuring the SDP chart’s <code class="docutils literal"><span class="pre">values.yaml</span></code> file and running the installer script.</p>
 <div class="section" id="make-a-copy-of-the-values-file-template">
 <h2>Make a Copy of the Values File Template<a class="headerlink" href="#make-a-copy-of-the-values-file-template" title="Permalink to this headline">¶</a></h2>
 <p>The file “values.yaml” is how you configure the SDP to use your organization’s
@@ -179,7 +186,7 @@ uploaded, values.yaml is not only <em>not</em> included in the repository, but i
 actively ignored by Git.</p>
 <p>Instead, a template is provided that you can copy to your own values.yaml file.
 One way to create this copy is opening your terminal to the sdp repository and
-running the command <code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">values.template.yaml</span> <span class="pre">values.yaml</span></code>. It is highly
+running the command <code class="docutils literal"><span class="pre">cp</span> <span class="pre">values.template.yaml</span> <span class="pre">values.yaml</span></code>. It is highly
 recommended to start from this template and adding your additional settings to
 that template copy. Some of the necessary settings you will need to configure
 are described below.</p>
@@ -190,7 +197,7 @@ are described below.</p>
 organization(s) you would like the SDP to watch. Using your favorite text editor,
 open the values.yaml file in the root of your cloned sdp repository and update
 the following section:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jenkins</span><span class="p">:</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">jenkins</span><span class="p">:</span>
 
     <span class="n">githubOrganizations</span><span class="p">:</span>
     <span class="o">-</span> <span class="n">name</span><span class="p">:</span>         <span class="n">Required</span><span class="o">.</span> <span class="n">The</span> <span class="n">GitHub</span> <span class="n">Organization</span> <span class="n">Name</span> <span class="p">(</span><span class="n">case</span><span class="o">-</span><span class="n">sensitive</span><span class="p">)</span>
@@ -209,7 +216,7 @@ example configuration further down on this page.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">The credentialID fields refer to the ID of a credential object stored in Jenkins.
-Assuming you have a single GitHub account you plan to use, put <code class="docutils literal notranslate"><span class="pre">github</span></code></p>
+Assuming you have a single GitHub account you plan to use, put <code class="docutils literal"><span class="pre">github</span></code></p>
 </div>
 <dl class="docutils">
 <dt>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</dt>
@@ -221,8 +228,8 @@ to use. We go over storing these credentials in Jenkins further down this page.<
 <div class="section" id="configure-pipeline-configuration-repository">
 <h2>Configure Pipeline Configuration Repository<a class="headerlink" href="#configure-pipeline-configuration-repository" title="Permalink to this headline">¶</a></h2>
 <p>Next, we need to have Jenkins import the organization config repo we created earlier. To do this, we add it to the list of external pipeline libraries to import on startup.</p>
-<p>Add the following to the <code class="docutils literal notranslate"><span class="pre">values.yaml</span></code> file, creating an entry for your organization config repo:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jenkins</span><span class="p">:</span>
+<p>Add the following to the <code class="docutils literal"><span class="pre">values.yaml</span></code> file, creating an entry for your organization config repo:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">jenkins</span><span class="p">:</span>
 
     <span class="n">pipelineLibraries</span><span class="p">:</span>
     <span class="o">-</span> <span class="n">name</span><span class="p">:</span>               <span class="n">Required</span><span class="o">.</span> <span class="n">Library</span> <span class="n">ID</span> <span class="n">to</span> <span class="n">reference</span> <span class="n">when</span> <span class="n">loading</span>
@@ -245,7 +252,7 @@ Doing so is outside the scope of this quick start guide.</p>
 <h2>Configure Credentials<a class="headerlink" href="#configure-credentials" title="Permalink to this headline">¶</a></h2>
 <p>Now that we’ve chosen our GitHub organizations and pipeline libraries, we now need
 to provide Jenkins the GitHub credentials to access these resources.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jenkins</span><span class="p">:</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">jenkins</span><span class="p">:</span>
 
     <span class="n">credentials</span><span class="p">:</span>
     <span class="o">-</span> <span class="nb">id</span><span class="p">:</span>        <span class="n">Required</span><span class="o">.</span> <span class="n">Unique</span> <span class="n">name</span> <span class="k">for</span> <span class="n">the</span> <span class="n">credential</span> <span class="n">by</span> <span class="n">which</span> <span class="n">it</span> <span class="n">can</span> <span class="n">be</span> <span class="n">referenced</span>
@@ -269,7 +276,7 @@ to provide Jenkins the GitHub credentials to access these resources.</p>
 <div class="section" id="example-configuration">
 <h2>Example Configuration<a class="headerlink" href="#example-configuration" title="Permalink to this headline">¶</a></h2>
 <p>Putting it all together, an example of the jenkins portion for the <em>values.yaml</em> file looks like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jenkins</span><span class="p">:</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">jenkins</span><span class="p">:</span>
     <span class="n">master_docker_context_dir</span><span class="p">:</span> <span class="n">resources</span><span class="o">/</span><span class="n">jenkins</span><span class="o">-</span><span class="n">master</span>
     <span class="n">agent_docker_context_dir</span><span class="p">:</span> <span class="n">resources</span><span class="o">/</span><span class="n">jenkins</span><span class="o">-</span><span class="n">agent</span>
     <span class="n">num_agents</span><span class="p">:</span> <span class="mi">4</span>
@@ -301,18 +308,18 @@ to provide Jenkins the GitHub credentials to access these resources.</p>
 </div>
 <p>In this example, we are creating pipelines for the GitHub repositories in Steven
 Terrana’s account, as well as in the “Red-Hat-Summit” organization. Both
-repositories have their credentialID set to <code class="docutils literal notranslate"><span class="pre">github</span></code>. We define that credential
+repositories have their credentialID set to <code class="docutils literal"><span class="pre">github</span></code>. We define that credential
 in our values file and store in it the username and password for a Booz Allen
 Enterprise GitHub account. Both libraries also have the Booz Allen enterprise
 GitHub’s API URL, since they’re on that particular GitHub server. If we were using
-the public GitHub site, we would choose <code class="docutils literal notranslate"><span class="pre">https://api.github.com</span></code> and provide
+the public GitHub site, we would choose <code class="docutils literal"><span class="pre">https://api.github.com</span></code> and provide
 credentials for a public github account.</p>
-<p>We also created an entry for our organization config repo in <code class="docutils literal notranslate"><span class="pre">pipelineLibraries</span></code>.
-We gave it the name <code class="docutils literal notranslate"><span class="pre">red-hat-summit</span></code>, the same as the GitHub organization it’s
+<p>We also created an entry for our organization config repo in <code class="docutils literal"><span class="pre">pipelineLibraries</span></code>.
+We gave it the name <code class="docutils literal"><span class="pre">red-hat-summit</span></code>, the same as the GitHub organization it’s
 in, and specified that the <em>pipeline-configuration</em> repository is where we put
 our configuration files. Later on, when we want our tenant application
 repositories to use this organization configuration repo, we would refer to it
-with <code class="docutils literal notranslate"><span class="pre">organization</span> <span class="pre">=</span> <span class="pre">&quot;red-hat-summit&quot;</span></code>.</p>
+with <code class="docutils literal"><span class="pre">organization</span> <span class="pre">=</span> <span class="pre">&quot;red-hat-summit&quot;</span></code>.</p>
 </div>
 </div>
 
@@ -337,7 +344,7 @@ with <code class="docutils literal notranslate"><span class="pre">organization</
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Booz Allen Hamilton. All Rights Reserved. 
-  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl.
+  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl
 
     </p>
   </div>
@@ -352,25 +359,40 @@ with <code class="docutils literal notranslate"><span class="pre">organization</
 
   </div>
   
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Other Versions</span>
+        v: master
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>Branches</dt>
+            <dd><a href="../../master/pages/getting-started/configure_jenkins_in_chart.html">master</a></dd>
+        </dl>
+    </div>
+</div>
 
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../',
+              VERSION:'',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+    
 
   
 

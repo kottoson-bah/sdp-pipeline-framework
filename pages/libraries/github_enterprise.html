@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/banner.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="OpenShift" href="openshift.html" />
@@ -165,7 +166,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="github-enterprise">
+  
+
+
+
+
+
+<div class="section" id="github-enterprise">
 <h1>GitHub Enterprise<a class="headerlink" href="#github-enterprise" title="Permalink to this headline">¶</a></h1>
 <p>This library is unique in that rather than provide functional step
 implementations, it provides methods that help with the business logic
@@ -177,7 +184,7 @@ developers to get scm metadata or interact with a remote github repository.</p>
 </div>
 <div class="section" id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
-<div class="code groovy highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">libraries</span><span class="p">{</span>
+<div class="code groovy highlight-default"><div class="highlight"><pre><span></span><span class="n">libraries</span><span class="p">{</span>
   <span class="n">github_enterprise</span>
 <span class="p">}</span>
 </pre></div>
@@ -208,14 +215,14 @@ pull requests, and merges.</p>
 <td>A pull request was created or a developer pushed a commit to the source branch</td>
 </tr>
 <tr class="row-even"><td>on_change</td>
-<td>A combination of <code class="docutils literal notranslate"><span class="pre">on_commit</span></code> and <code class="docutils literal notranslate"><span class="pre">on_pull_request</span></code></td>
+<td>A combination of <code class="docutils literal"><span class="pre">on_commit</span></code> and <code class="docutils literal"><span class="pre">on_pull_request</span></code></td>
 </tr>
 <tr class="row-odd"><td>on_merge</td>
 <td>A pull request was merged into the branch.</td>
 </tr>
 </tbody>
 </table>
-<p>These methods take named parameters <code class="docutils literal notranslate"><span class="pre">to</span></code> and <code class="docutils literal notranslate"><span class="pre">from</span></code> indicating direction of the github
+<p>These methods take named parameters <code class="docutils literal"><span class="pre">to</span></code> and <code class="docutils literal"><span class="pre">from</span></code> indicating direction of the github
 whose value is a regular expression to compare the branch names against.</p>
 <p>SDP provides some default keywords for branch name regular expressions:</p>
 <table border="1" class="docutils" id="id2">
@@ -253,7 +260,7 @@ library but rather leveraged by defining <a class="reference internal" href="../
 <div class="section" id="example-pipeline-templates">
 <h2>Example Pipeline Templates<a class="headerlink" href="#example-pipeline-templates" title="Permalink to this headline">¶</a></h2>
 <p><strong>Full example using keywords</strong></p>
-<div class="code groovy highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">on_commit</span><span class="p">{</span>
+<div class="code groovy highlight-default"><div class="highlight"><pre><span></span><span class="n">on_commit</span><span class="p">{</span>
   <span class="n">continuous_integration</span><span class="p">()</span>
 <span class="p">}</span>
 
@@ -274,7 +281,7 @@ library but rather leveraged by defining <a class="reference internal" href="../
 </pre></div>
 </div>
 <p><strong>Example using regular expressions directly</strong></p>
-<div class="code groovy highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">on_commit</span> <span class="n">to</span><span class="p">:</span> <span class="o">/^</span><span class="p">[</span><span class="n">Ff</span><span class="p">]</span><span class="n">eature</span><span class="o">-.*/</span><span class="p">,</span> <span class="p">{</span>
+<div class="code groovy highlight-default"><div class="highlight"><pre><span></span><span class="n">on_commit</span> <span class="n">to</span><span class="p">:</span> <span class="o">/^</span><span class="p">[</span><span class="n">Ff</span><span class="p">]</span><span class="n">eature</span><span class="o">-.*/</span><span class="p">,</span> <span class="p">{</span>
   <span class="o">//</span> <span class="n">will</span> <span class="n">be</span> <span class="n">triggered</span> <span class="n">on</span> <span class="n">feature</span> <span class="n">branches</span>
 <span class="p">}</span>
 <span class="n">on_pull_request</span> <span class="n">from</span><span class="p">:</span> <span class="o">/^</span><span class="p">[</span><span class="n">Ff</span><span class="p">]</span><span class="n">eature</span><span class="o">-.*/</span><span class="p">,</span> <span class="n">to</span><span class="p">:</span> <span class="n">develop</span><span class="p">,</span> <span class="p">{</span>
@@ -283,7 +290,7 @@ library but rather leveraged by defining <a class="reference internal" href="../
 </pre></div>
 </div>
 <p><strong>Example using on_change</strong></p>
-<div class="code groovy highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">on_change</span><span class="p">{</span>
+<div class="code groovy highlight-default"><div class="highlight"><pre><span></span><span class="n">on_change</span><span class="p">{</span>
   <span class="o">//</span> <span class="n">do</span> <span class="n">CI</span> <span class="n">on</span> <span class="n">every</span> <span class="n">commit</span> <span class="ow">or</span> <span class="n">PR</span>
   <span class="n">continuous_integration</span><span class="p">()</span>
 <span class="p">}</span>
@@ -319,7 +326,7 @@ library but rather leveraged by defining <a class="reference internal" href="../
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Booz Allen Hamilton. All Rights Reserved. 
-  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl.
+  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl
 
     </p>
   </div>
@@ -334,25 +341,40 @@ library but rather leveraged by defining <a class="reference internal" href="../
 
   </div>
   
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Other Versions</span>
+        v: master
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>Branches</dt>
+            <dd><a href="../../master/pages/libraries/github_enterprise.html">master</a></dd>
+        </dl>
+    </div>
+</div>
 
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../',
+              VERSION:'',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+    
 
   
 

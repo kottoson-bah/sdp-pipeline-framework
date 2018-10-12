@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/banner.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Clone The SDP Deployment Repository" href="clone_sdp_repo.html" />
@@ -166,7 +167,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="create-a-pipeline-configuration-repository">
+  
+
+
+
+
+
+<div class="section" id="create-a-pipeline-configuration-repository">
 <h1>Create a Pipeline Configuration Repository<a class="headerlink" href="#create-a-pipeline-configuration-repository" title="Permalink to this headline">¶</a></h1>
 <p>When using the SDP, the <strong>Pipeline Configuration Repository</strong> is where organization-wide settings are configured for your DevSecOps pipelines.</p>
 <p>This repository will contain your business organization’s configuration file, which specifies the organization-wide libraries to load, the application environments, your pipeline templates, and more.  Right now, let’s focus on setting up the repository’s structure. We’ll dive more into the configuration files later.</p>
@@ -180,7 +187,7 @@
 <p class="last">Changes to this repository will immediately impact every pipeline in your organization.</p>
 </div>
 <p>We need to populate this repository with the following file structure:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>├── resources/
+<div class="highlight-default"><div class="highlight"><pre><span></span>├── resources/
 │   └── sdp-org/
 │       ├── Jenkinsfile
 │       ├── pipeline_config.groovy
@@ -190,7 +197,7 @@
 </pre></div>
 </div>
 <p>You can copy and paste this to setup your repo’s file structure:</p>
-<div class="code shell highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># from the root of your pipeline config repo</span>
+<div class="code shell highlight-default"><div class="highlight"><pre><span></span><span class="c1"># from the root of your pipeline config repo</span>
 <span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="n">resources</span><span class="o">/</span><span class="n">sdp</span><span class="o">-</span><span class="n">org</span><span class="o">/</span><span class="n">pipeline_templates</span> <span class="nb">vars</span>
 <span class="n">touch</span> <span class="n">resources</span><span class="o">/</span><span class="n">sdp</span><span class="o">-</span><span class="n">org</span><span class="o">/</span><span class="p">{</span><span class="n">pipeline_config</span><span class="o">.</span><span class="n">groovy</span><span class="p">,</span><span class="n">Jenkinsfile</span><span class="p">}</span> <span class="nb">vars</span><span class="o">/</span><span class="n">do_nothing</span><span class="o">.</span><span class="n">groovy</span>
 <span class="n">git</span> <span class="n">add</span> <span class="o">--</span><span class="nb">all</span>
@@ -260,7 +267,7 @@ at least one groovy file, the library will fail to load.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Booz Allen Hamilton. All Rights Reserved. 
-  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl.
+  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl
 
     </p>
   </div>
@@ -275,25 +282,40 @@ at least one groovy file, the library will fail to load.</p>
 
   </div>
   
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Other Versions</span>
+        v: master
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>Branches</dt>
+            <dd><a href="../../master/pages/getting-started/create_pipeline_config_repo.html">master</a></dd>
+        </dl>
+    </div>
+</div>
 
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../',
+              VERSION:'',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+    
 
   
 

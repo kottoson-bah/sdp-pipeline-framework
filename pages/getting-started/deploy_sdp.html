@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/banner.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Configure SDP" href="configure_sdp.html" />
@@ -166,11 +167,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="id1">
+  
+
+
+
+
+
+<div class="section" id="id1">
 <h1>Deploy SDP<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <hr class="docutils" />
 <p>Deploying the Solutions Delivery Platform with the default reference architecture is done using a bash script and a series of Helm charts for the different DevSecOps tools. These are all contained in the <a class="reference external" href="https://github.com/boozallen/sdp-helm-chart.git">SDP GitHub Repository</a>, which you can clone with either of the commands below.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">## cloning via ssh</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1">## cloning via ssh</span>
 git clone git@github.com:boozallen/sdp-helm-chart.git
 <span class="c1">## cloning via https</span>
 git clone https://github.com/boozallen/sdp-helm-chart.git
@@ -178,16 +185,16 @@ git clone https://github.com/boozallen/sdp-helm-chart.git
 </div>
 <p><strong>If you haven’t already</strong>, use one of the above commands to clone the sdp repository to your computer. We will be editing the <em>values.yaml</em> file in the root of this repository to configure the SDP for your project.</p>
 <div class="section" id="customize-the-values-yaml-file">
-<h2>Customize the <code class="docutils literal notranslate"><span class="pre">values.yaml</span></code> File<a class="headerlink" href="#customize-the-values-yaml-file" title="Permalink to this headline">¶</a></h2>
+<h2>Customize the <code class="docutils literal"><span class="pre">values.yaml</span></code> File<a class="headerlink" href="#customize-the-values-yaml-file" title="Permalink to this headline">¶</a></h2>
 <p>If necessary, customize the <em>values.yaml</em> file further.  Please refer to the README <a class="reference external" href="https://github.com/boozallen/sdp-helm-chart/blob/master/README.rst">here</a> information on what each line of the <em>values.yaml</em> file does. If following the <a class="reference internal" href="index.html#getting-started"><span class="std std-ref">Getting Started</span></a>
 guide, you should have already customized the <a class="reference internal" href="configure_jenkins_in_chart.html#jenkins-chart-configuration"><span class="std std-ref">jenkins chart configuration</span></a> with
 a reference to the GitHub organizations you intend for SDP to watch and added your pipeline configuration repository as a library.</p>
-<p>The only other field you should update is <code class="docutils literal notranslate"><span class="pre">domain</span></code>, under <code class="docutils literal notranslate"><span class="pre">global</span></code>. Set this to whatever domain is being used for the routes on your Openshift cluster.</p>
+<p>The only other field you should update is <code class="docutils literal"><span class="pre">domain</span></code>, under <code class="docutils literal"><span class="pre">global</span></code>. Set this to whatever domain is being used for the routes on your Openshift cluster.</p>
 </div>
 <div class="section" id="additional-tools">
 <h2>Additional Tools<a class="headerlink" href="#additional-tools" title="Permalink to this headline">¶</a></h2>
 <p>We have created several helm charts to deploy additional DevSecOps tooling.  The full list of tools and customizations
-for the SDP helm chart can be seen in the <code class="docutils literal notranslate"><span class="pre">README.rst</span></code> of the deployment repository.  It renders best in the browser
+for the SDP helm chart can be seen in the <code class="docutils literal"><span class="pre">README.rst</span></code> of the deployment repository.  It renders best in the browser
 and can be seen <a class="reference external" href="https://github.com/boozallen/sdp-helm-chart/blob/master/README.rst">here</a>.</p>
 </div>
 <div class="section" id="run-the-installer-script">
@@ -199,7 +206,7 @@ and can be seen <a class="reference external" href="https://github.com/boozallen
 <li>You have installed the <a class="reference external" href="https://docs.helm.sh/using_helm/#installing-the-helm-client">Helm CLI</a></li>
 </ul>
 <p>With the helm chart appropriately configured, you can run the installer script via</p>
-<div class="code shell highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bash</span> <span class="n">installer</span><span class="o">.</span><span class="n">sh</span>
+<div class="code shell highlight-default"><div class="highlight"><pre><span></span><span class="n">bash</span> <span class="n">installer</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
 </div>
 </div>
@@ -226,7 +233,7 @@ and can be seen <a class="reference external" href="https://github.com/boozallen
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Booz Allen Hamilton. All Rights Reserved. 
-  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl.
+  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl
 
     </p>
   </div>
@@ -241,25 +248,40 @@ and can be seen <a class="reference external" href="https://github.com/boozallen
 
   </div>
   
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Other Versions</span>
+        v: master
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>Branches</dt>
+            <dd><a href="../../master/pages/getting-started/deploy_sdp.html">master</a></dd>
+        </dl>
+    </div>
+</div>
 
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../',
+              VERSION:'',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+    
 
   
 

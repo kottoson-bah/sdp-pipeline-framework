@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
   <link rel="stylesheet" href="_static/style.css" type="text/css" />
+  <link rel="stylesheet" href="_static/banner.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Getting Started" href="pages/getting-started/index.html" /> 
@@ -151,7 +152,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="solutions-delivery-platform">
+  
+
+
+
+
+
+<div class="section" id="solutions-delivery-platform">
 <h1>Solutions Delivery Platform<a class="headerlink" href="#solutions-delivery-platform" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -189,8 +196,8 @@ besides OpenShift.</p>
 <p>Our pipeline framework is at the center of SDP.  Every tech stack incorporates at least a subset of common software development life cycle phases: build,
 package, deploy, unit test, functional test, static code quality analysis.  We leverage these patterns to build a modular pipeline that gets composed at
 runtime.</p>
-<p>This is best illustrated by example:  when wanting to scan a container image, the method <code class="docutils literal notranslate"><span class="pre">scan_container_image</span></code> is called.  Now, if we had a <code class="docutils literal notranslate"><span class="pre">Twistlock</span></code>
-library and a <code class="docutils literal notranslate"><span class="pre">OpenSCAP</span></code> library that both contribute their own implementations of <code class="docutils literal notranslate"><span class="pre">scan_container_image</span></code>, then depending on which library we load, we’ll
+<p>This is best illustrated by example:  when wanting to scan a container image, the method <code class="docutils literal"><span class="pre">scan_container_image</span></code> is called.  Now, if we had a <code class="docutils literal"><span class="pre">Twistlock</span></code>
+library and a <code class="docutils literal"><span class="pre">OpenSCAP</span></code> library that both contribute their own implementations of <code class="docutils literal"><span class="pre">scan_container_image</span></code>, then depending on which library we load, we’ll
 get different functionality.</p>
 </div>
 <div class="section" id="devsecops-dashboard">
@@ -227,7 +234,7 @@ aggregate this data into actionable insights empowering you to streamline your s
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Booz Allen Hamilton. All Rights Reserved. 
-  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl.
+  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl
 
     </p>
   </div>
@@ -242,25 +249,40 @@ aggregate this data into actionable insights empowering you to streamline your s
 
   </div>
   
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Other Versions</span>
+        v: master
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>Branches</dt>
+            <dd><a href="master/index.html">master</a></dd>
+        </dl>
+    </div>
+</div>
 
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'./',
+              VERSION:'',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
 
   
 

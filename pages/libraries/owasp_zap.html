@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/banner.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Protractor" href="protractor.html" />
@@ -165,7 +166,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="owasp-zap">
+  
+
+
+
+
+
+<div class="section" id="owasp-zap">
 <h1>OWASP ZAP<a class="headerlink" href="#owasp-zap" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project">OWASP Zed Attack Proxy (ZAP)</a> is a tool that can help
 you automatically find security vulnerabilities in your web applications while
@@ -207,11 +214,11 @@ experienced pentesters to use for manual security testing.</p>
 </tr>
 </tbody>
 </table>
-<p><code class="code docutils literal notranslate"><span class="pre">target</span></code> is set to <code class="code docutils literal notranslate"><span class="pre">env.FRONTEND_URL</span></code> if available. If not then it uses the provided
+<p><code class="code docutils literal"><span class="pre">target</span></code> is set to <code class="code docutils literal"><span class="pre">env.FRONTEND_URL</span></code> if available. If not then it uses the provided
 URL. If no URL is provided an error is thrown.</p>
 <div class="section" id="example-configuration-snippet">
 <h3>Example Configuration Snippet<a class="headerlink" href="#example-configuration-snippet" title="Permalink to this headline">¶</a></h3>
-<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">libraries</span><span class="p">{</span>
+<div class="code highlight-default"><div class="highlight"><pre><span></span><span class="n">libraries</span><span class="p">{</span>
   <span class="n">owasp_zap</span><span class="p">{</span>
     <span class="n">target</span> <span class="o">=</span> <span class="s2">&quot;https://example.com&quot;</span>
     <span class="n">vulnerability_threshold</span> <span class="o">=</span> <span class="s2">&quot;Low&quot;</span>
@@ -248,7 +255,7 @@ URL. If no URL is provided an error is thrown.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Booz Allen Hamilton. All Rights Reserved. 
-  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl.
+  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl
 
     </p>
   </div>
@@ -263,25 +270,40 @@ URL. If no URL is provided an error is thrown.</p>
 
   </div>
   
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Other Versions</span>
+        v: master
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>Branches</dt>
+            <dd><a href="../../master/pages/libraries/owasp_zap.html">master</a></dd>
+        </dl>
+    </div>
+</div>
 
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../../',
+              VERSION:'',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+    
 
   
 
