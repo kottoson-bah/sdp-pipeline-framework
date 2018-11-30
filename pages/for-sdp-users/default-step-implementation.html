@@ -190,13 +190,13 @@ has supplied an implementation of a method.</p>
 <h2>SDP Default Step Implementation<a class="headerlink" href="#sdp-default-step-implementation" title="Permalink to this headline">¶</a></h2>
 <p>The SDP default step implementation allows you to generically define a pipeline step
 in a <code class="docutils literal"><span class="pre">steps</span></code> block.</p>
-<p>In order for a step to be recognized and default to the defualt step implementation, it
+<p>In order for a step to be recognized and default to the default step implementation, it
 must appear in the <code class="docutils literal"><span class="pre">pipeline_template_methods</span></code> block of the configuration file or be a
 key inside the <code class="docutils literal"><span class="pre">steps</span></code> block.</p>
 <p>The <a class="reference external" href="https://github.com/boozallen/sdp-pipeline-framework/blob/master/resources/sdp/pipeline_config.groovy">default SDP configuration file</a> defines a set of abstract methods that will default to
 the default step implementation.</p>
-<div class="section" id="leveraging-the-default-step-implmementation">
-<h3>Leveraging the Default Step Implmementation<a class="headerlink" href="#leveraging-the-default-step-implmementation" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="leveraging-the-default-step-implementation">
+<h3>Leveraging the Default Step Implementation<a class="headerlink" href="#leveraging-the-default-step-implementation" title="Permalink to this headline">¶</a></h3>
 <p>A <code class="docutils literal"><span class="pre">steps</span></code> block is available for configuration.  Below is an example of configuring the
 default step implementation to act as a unit_test step to run a test suite through maven.</p>
 <div class="code groovy highlight-default"><div class="highlight"><pre><span></span><span class="n">steps</span><span class="p">{</span>
@@ -204,7 +204,6 @@ default step implementation to act as a unit_test step to run a test suite throu
         <span class="n">stage</span> <span class="o">=</span> <span class="s2">&quot;Unit Test&quot;</span>
         <span class="n">image</span> <span class="o">=</span> <span class="s2">&quot;maven&quot;</span>
         <span class="n">command</span> <span class="o">=</span> <span class="s2">&quot;mvn clean verify&quot;</span>
-        <span class="n">script</span> <span class="o">=</span> <span class="o">./</span><span class="n">tests</span><span class="o">/</span><span class="n">unit_test</span><span class="o">.</span><span class="n">sh</span>
         <span class="n">stash</span><span class="p">{</span>
             <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;test-results&quot;</span>
             <span class="n">includes</span> <span class="o">=</span> <span class="s2">&quot;./target&quot;</span>
@@ -216,9 +215,30 @@ default step implementation to act as a unit_test step to run a test suite throu
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>With this configuratino in place, <code class="docutils literal"><span class="pre">unit_test()</span></code> will be callable from a pipeline template and will
+<p>With this configuration in place, <code class="docutils literal"><span class="pre">unit_test()</span></code> will be callable from a pipeline template and will
 run <code class="docutils literal"><span class="pre">mvn</span> <span class="pre">clean</span> <span class="pre">verify</span></code> inside the <code class="docutils literal"><span class="pre">maven</span></code> container image.  The <code class="docutils literal"><span class="pre">./target</span></code> directory will be
 stored for later use by stashing the contents in a stash named <code class="docutils literal"><span class="pre">test-results</span></code>.</p>
+<p>In addition to calling commands, your default step implementations can run scripts. Instead of the
+<cite>command</cite> field, use the <cite>script</cite> field and pass the path for the script in your application
+repository. Below is an example</p>
+<blockquote>
+<div><div class="code groovy highlight-default"><div class="highlight"><pre><span></span><span class="n">steps</span><span class="p">{</span>
+  <span class="n">unit_test</span><span class="p">{</span>
+    <span class="n">stage</span> <span class="o">=</span> <span class="s2">&quot;Unit Test&quot;</span>
+    <span class="n">image</span> <span class="o">=</span> <span class="s2">&quot;maven&quot;</span>
+    <span class="n">script</span> <span class="o">=</span> <span class="o">./</span><span class="n">tests</span><span class="o">/</span><span class="n">unit_test</span><span class="o">.</span><span class="n">sh</span>
+    <span class="n">stash</span><span class="p">{</span>
+      <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;test-results&quot;</span>
+      <span class="n">includes</span> <span class="o">=</span> <span class="s2">&quot;./target&quot;</span>
+      <span class="n">excludes</span> <span class="o">=</span> <span class="s2">&quot;./src&quot;</span>
+      <span class="n">useDefaultExcludes</span> <span class="o">=</span> <span class="n">false</span>
+      <span class="n">allowEmpty</span> <span class="o">=</span> <span class="n">true</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
 <p>You can name the keys within <code class="docutils literal"><span class="pre">steps</span></code> whatever you please, and they will be callable as methods.</p>
 <p>The configuration options within your defined step:</p>
 <table border="1" class="docutils" id="id3">
@@ -339,7 +359,7 @@ that is the step name.  It’s up to you to do what you will with this.  You can
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Booz Allen Hamilton. All Rights Reserved. 
-  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl
+  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl.
 
     </p>
   </div>
@@ -364,6 +384,8 @@ that is the step name.  It’s up to you to do what you will with this.  You can
         <dl>
             <dt>Branches</dt>
             <dd><a href="../../master/pages/for-sdp-users/default-step-implementation.html">master</a></dd>
+            <dd><a href="../../owasp-dep-check-lib/pages/for-sdp-users/default-step-implementation.html">owasp-dep-check-lib</a></dd>
+            <dd><a href="../../steven-terrana-patch-1/pages/for-sdp-users/default-step-implementation.html">steven-terrana-patch-1</a></dd>
         </dl>
     </div>
 </div>
@@ -371,23 +393,20 @@ that is the step name.  It’s up to you to do what you will with this.  You can
 
   
 
-    
-    
-      <script type="text/javascript">
-          var DOCUMENTATION_OPTIONS = {
-              URL_ROOT:'../../',
-              VERSION:'',
-              LANGUAGE:'None',
-              COLLAPSE_INDEX:false,
-              FILE_SUFFIX:'.html',
-              HAS_SOURCE:  true,
-              SOURCELINK_SUFFIX: '.txt'
-          };
-      </script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-    
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
 
   
 

@@ -187,7 +187,7 @@ actively ignored by Git.</p>
 <p>Instead, a template is provided that you can copy to your own values.yaml file.
 One way to create this copy is opening your terminal to the sdp repository and
 running the command <code class="docutils literal"><span class="pre">cp</span> <span class="pre">values.template.yaml</span> <span class="pre">values.yaml</span></code>. It is highly
-recommended to start from this template and adding your additional settings to
+recommended to start from this template and add your additional settings to
 that template copy. Some of the necessary settings you will need to configure
 are described below.</p>
 </div>
@@ -216,27 +216,25 @@ example configuration further down on this page.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">The credentialID fields refer to the ID of a credential object stored in Jenkins.
-Assuming you have a single GitHub account you plan to use, put <code class="docutils literal"><span class="pre">github</span></code></p>
+Assuming you have a single GitHub account you plan to use, put <code class="docutils literal"><span class="pre">github</span></code>
+here. Otherwise provide a unique credentialID for each GitHub account you plan
+to use. We go over storing these credentials in Jenkins further down this page.</p>
 </div>
-<dl class="docutils">
-<dt>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</dt>
-<dd>here. Otherwise provide a unique credentialID for each GitHub account you plan
-to use. We go over storing these credentials in Jenkins further down this page.</dd>
-</dl>
 <p>&gt;&gt;&gt;&gt;&gt;&gt;&gt; new-github-secret-name</p>
 </div>
 <div class="section" id="configure-pipeline-configuration-repository">
 <h2>Configure Pipeline Configuration Repository<a class="headerlink" href="#configure-pipeline-configuration-repository" title="Permalink to this headline">¶</a></h2>
-<p>Next, we need to have Jenkins import the organization config repo we created earlier. To do this, we add it to the list of external pipeline libraries to import on startup.</p>
+<p>Next, we need to have Jenkins import the organization config repo we created earlier.
+To do this, we add it to the list of external pipeline libraries to import on startup.</p>
 <p>Add the following to the <code class="docutils literal"><span class="pre">values.yaml</span></code> file, creating an entry for your organization config repo:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">jenkins</span><span class="p">:</span>
 
     <span class="n">pipelineLibraries</span><span class="p">:</span>
-    <span class="o">-</span> <span class="n">name</span><span class="p">:</span>               <span class="n">Required</span><span class="o">.</span> <span class="n">Library</span> <span class="n">ID</span> <span class="n">to</span> <span class="n">reference</span> <span class="n">when</span> <span class="n">loading</span>
+    <span class="o">-</span> <span class="n">name</span><span class="p">:</span>               <span class="n">Required</span><span class="o">.</span> <span class="n">Library</span> <span class="n">ID</span> <span class="n">to</span> <span class="n">reference</span> <span class="n">when</span> <span class="n">loading</span> <span class="p">(</span><span class="n">the</span> <span class="n">Organization</span> <span class="n">Name</span><span class="p">)</span>
       <span class="n">githubApiUrl</span><span class="p">:</span>       <span class="n">Required</span><span class="o">.</span> <span class="n">GitHub</span> <span class="n">API</span> <span class="n">URL</span>
       <span class="n">githubCredentialID</span><span class="p">:</span> <span class="n">Required</span><span class="o">.</span> <span class="n">The</span> <span class="n">Name</span> <span class="n">Of</span> <span class="n">The</span> <span class="n">Jenkins</span> <span class="n">Credential</span> <span class="n">That</span> <span class="n">Can</span> <span class="n">Access</span> <span class="n">Library</span> <span class="n">Repo</span>
-      <span class="n">org</span><span class="p">:</span>                <span class="n">Required</span><span class="o">.</span> <span class="n">Name</span> <span class="n">of</span> <span class="n">GitHub</span> <span class="n">Organization</span> <span class="n">Containing</span> <span class="n">Library</span>
-      <span class="n">repo</span><span class="p">:</span>               <span class="n">Required</span><span class="o">.</span> <span class="n">Name</span> <span class="n">of</span> <span class="n">GitHub</span> <span class="n">Repository</span>
+      <span class="n">org</span><span class="p">:</span>                <span class="n">Required</span><span class="o">.</span> <span class="n">Name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">GitHub</span> <span class="n">Organization</span> <span class="n">Containing</span> <span class="n">Library</span>
+      <span class="n">repo</span><span class="p">:</span>               <span class="n">Required</span><span class="o">.</span> <span class="n">Name</span> <span class="n">of</span> <span class="n">the</span> <span class="n">GitHub</span> <span class="n">Repository</span>
       <span class="n">implicit</span><span class="p">:</span>           <span class="n">Optional</span><span class="o">.</span> <span class="n">Whether</span> <span class="n">to</span> <span class="n">Load</span> <span class="n">Library</span> <span class="n">Implicitly</span><span class="o">.</span> <span class="n">Default</span> <span class="n">false</span><span class="o">.</span>
       <span class="n">defaultVersion</span><span class="p">:</span>     <span class="n">Optional</span><span class="o">.</span> <span class="n">Default</span> <span class="n">Branch</span> <span class="n">of</span> <span class="n">Library</span> <span class="n">to</span> <span class="n">Load</span><span class="o">.</span> <span class="n">Default</span> <span class="n">master</span><span class="o">.</span>
     <span class="o">-</span> <span class="o">...</span> <span class="p">(</span><span class="n">multiple</span> <span class="n">can</span> <span class="n">be</span> <span class="n">defined</span><span class="p">)</span>
@@ -250,8 +248,11 @@ Doing so is outside the scope of this quick start guide.</p>
 </div>
 <div class="section" id="configure-credentials">
 <h2>Configure Credentials<a class="headerlink" href="#configure-credentials" title="Permalink to this headline">¶</a></h2>
-<p>Now that we’ve chosen our GitHub organizations and pipeline libraries, we now need
-to provide Jenkins the GitHub credentials to access these resources.</p>
+<p>Now that we’ve chosen our GitHub organizations and pipeline libraries, we need
+to provide Jenkins the GitHub credentials to access these resources. Include a
+<em>credentials</em> block in your values.yaml file and an entry with id <strong>github</strong>
+containing your GitHub credentials. You can also add any additional credentials
+you plan to use.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">jenkins</span><span class="p">:</span>
 
     <span class="n">credentials</span><span class="p">:</span>
@@ -344,7 +345,7 @@ with <code class="docutils literal"><span class="pre">organization</span> <span 
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Booz Allen Hamilton. All Rights Reserved. 
-  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl
+  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl.
 
     </p>
   </div>
@@ -369,6 +370,8 @@ with <code class="docutils literal"><span class="pre">organization</span> <span 
         <dl>
             <dt>Branches</dt>
             <dd><a href="../../master/pages/getting-started/configure_jenkins_in_chart.html">master</a></dd>
+            <dd><a href="../../owasp-dep-check-lib/pages/getting-started/configure_jenkins_in_chart.html">owasp-dep-check-lib</a></dd>
+            <dd><a href="../../steven-terrana-patch-1/pages/getting-started/configure_jenkins_in_chart.html">steven-terrana-patch-1</a></dd>
         </dl>
     </div>
 </div>
@@ -376,23 +379,20 @@ with <code class="docutils literal"><span class="pre">organization</span> <span 
 
   
 
-    
-    
-      <script type="text/javascript">
-          var DOCUMENTATION_OPTIONS = {
-              URL_ROOT:'../../',
-              VERSION:'',
-              LANGUAGE:'None',
-              COLLAPSE_INDEX:false,
-              FILE_SUFFIX:'.html',
-              HAS_SOURCE:  true,
-              SOURCELINK_SUFFIX: '.txt'
-          };
-      </script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-    
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
 
   
 

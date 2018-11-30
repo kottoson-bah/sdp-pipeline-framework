@@ -1,0 +1,383 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Conditional Inheritance &mdash; Solutions Delivery Platform  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/banner.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Default Step Implementations" href="default-step-implementation.html" />
+    <link rel="prev" title="Application Image Repository" href="app-image-repo.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Solutions Delivery Platform
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Pipeline Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../for-framework-devs/index.html">For Framework Developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../for-library-devs/index.html">For Library Developers</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">For SDP Users</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="app-envs.html">Application Environments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app-image-repo.html">Application Image Repository</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Conditional Inheritance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="default-step-implementation.html">Default Step Implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jenkinsfile-variables.html">Jenkinsfile Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multiple-pipeline-templates.html">Pipeline Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notifiers.html">Notifiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdp-image-repo.html">SDP Pipeline Image Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stages.html">Stages</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../how-to/index.html">How-To’s</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contribute-to-docs.html">Contribute to the Docs</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Solutions Delivery Platform</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">For SDP Users</a> &raquo;</li>
+        
+      <li>Conditional Inheritance</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/pages/for-sdp-users/conditional-inheritance.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+
+
+    
+    
+
+
+
+    <p class="scv-banner scv-sphinx_rtd_theme"><a href="../../../master/pages/for-sdp-users/conditional-inheritance.html"><b>Warning:</b> This document is for the development version of Solutions Delivery Platform. The main version is master.</a></p>
+<div class="section" id="conditional-inheritance">
+<span id="id1"></span><h1>Conditional Inheritance<a class="headerlink" href="#conditional-inheritance" title="Permalink to this headline">¶</a></h1>
+<p>While SDP derives much of its value from the reusable aspect of its design, another
+significant feature is the organizational governance achievable through SDP.</p>
+<p>Different organizations have different requirements around the level of governance
+that’s required.</p>
+<p>SDP configuration files enable organizations to dial up or down the level of
+governance by allowing portions of the configuration to be appended to, or even
+replaced entirely by using the <code class="docutils literal"><span class="pre">merge</span></code> and <code class="docutils literal"><span class="pre">override</span></code> keys.</p>
+<div class="section" id="overall-precedence">
+<h2>Overall Precedence<a class="headerlink" href="#overall-precedence" title="Permalink to this headline">¶</a></h2>
+<p>There are three configuration files in SDP.</p>
+<ol class="arabic simple">
+<li>SDP default configuration file</li>
+<li>The organization configuration file</li>
+<li>The tenant configuration file</li>
+</ol>
+<ul class="simple">
+<li>Any key not defined by the organization will inherit the SDP value.</li>
+<li>Any key defined by the organization will <strong>override</strong> what’s defined in the SDP default</li>
+<li>Any key defined by the tenant that’s not defined by either SDP or the Organization will be used.</li>
+<li>Any key defined by the tenant that’s been defined by the organization or SDP will be used <strong>if and only if</strong> the organization has specified this in their own configuration.</li>
+</ul>
+<p>Let’s look at merging and overriding organization configurations.</p>
+</div>
+<div class="section" id="merge">
+<h2>Merge<a class="headerlink" href="#merge" title="Permalink to this headline">¶</a></h2>
+<p>The merge key allows you to append tenant configurations to organization configurations.</p>
+<p>This is best illustrated by an example.</p>
+<p>Here is an example snippet from an <strong>organization pipeline_config.groovy</strong> file:</p>
+<div class="code groovy highlight-default"><div class="highlight"><pre><span></span><span class="n">application_environments</span><span class="p">{</span>
+    <span class="n">merge</span> <span class="o">=</span> <span class="n">true</span>
+    <span class="n">dev</span><span class="p">{</span>
+        <span class="n">short_name</span> <span class="o">=</span> <span class="s2">&quot;dev&quot;</span>
+        <span class="n">long_name</span> <span class="o">=</span> <span class="s2">&quot;Development&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>and here’s an example <strong>tenant pipeline_config.groovy</strong> file:</p>
+<div class="code groovy highlight-default"><div class="highlight"><pre><span></span><span class="n">application_environments</span><span class="p">{</span>
+    <span class="n">dev</span><span class="p">{</span>
+        <span class="n">short_name</span> <span class="o">=</span> <span class="s2">&quot;tenant custom!&quot;</span>
+        <span class="n">long_name</span> <span class="o">=</span> <span class="s2">&quot;my own!&quot;</span>
+    <span class="p">}</span>
+    <span class="n">prod</span><span class="p">{</span>
+        <span class="n">short_name</span> <span class="o">=</span> <span class="s2">&quot;prod&quot;</span>
+        <span class="n">long_name</span> <span class="o">=</span> <span class="s2">&quot;Production&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>the <strong>aggregated configuration</strong> would then be</p>
+<div class="code groovy highlight-default"><div class="highlight"><pre><span></span><span class="n">application_environments</span><span class="p">{</span>
+    <span class="n">dev</span><span class="p">{</span>
+        <span class="n">short_name</span> <span class="o">=</span> <span class="s2">&quot;dev&quot;</span>
+        <span class="n">long_name</span> <span class="o">=</span> <span class="s2">&quot;Development&quot;</span>
+    <span class="p">}</span>
+    <span class="n">prod</span><span class="p">{</span>
+        <span class="n">short_name</span> <span class="o">=</span> <span class="s2">&quot;prod&quot;</span>
+        <span class="n">long_name</span>  <span class="o">=</span> <span class="s2">&quot;Production&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>What Happened?</strong></p>
+<p>The organization set merge to true for application environments.  This means that existing
+application environments defined by the organization will not be tampered with but new keys
+can be added.</p>
+<p>The tenant tried to change the <code class="docutils literal"><span class="pre">dev</span></code> environment and add a <code class="docutils literal"><span class="pre">prod</span></code> environment.  The aggregation
+did not fail, but only accepted the addition of a new <code class="docutils literal"><span class="pre">prod</span></code> key.</p>
+</div>
+<div class="section" id="overriding">
+<h2>Overriding<a class="headerlink" href="#overriding" title="Permalink to this headline">¶</a></h2>
+<p>The override key allows a tenant to replace an existing configuration with their own.</p>
+<p>Let’s use the same example from before except change the merge to an override.</p>
+<p>Here is an example snippet from an <strong>organization pipeline_config.groovy</strong> file:</p>
+<div class="code groovy highlight-default"><div class="highlight"><pre><span></span><span class="n">application_environments</span><span class="p">{</span>
+    <span class="n">override</span> <span class="o">=</span> <span class="n">true</span>
+    <span class="n">dev</span><span class="p">{</span>
+        <span class="n">short_name</span> <span class="o">=</span> <span class="s2">&quot;dev&quot;</span>
+        <span class="n">long_name</span> <span class="o">=</span> <span class="s2">&quot;Development&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <strong>tenant pipeline_config.groovy</strong> file can remain the same:</p>
+<div class="code groovy highlight-default"><div class="highlight"><pre><span></span><span class="n">application_environments</span><span class="p">{</span>
+    <span class="n">dev</span><span class="p">{</span>
+        <span class="n">short_name</span> <span class="o">=</span> <span class="s2">&quot;tenant custom!&quot;</span>
+        <span class="n">long_name</span> <span class="o">=</span> <span class="s2">&quot;my own!&quot;</span>
+    <span class="p">}</span>
+    <span class="n">prod</span><span class="p">{</span>
+        <span class="n">short_name</span> <span class="o">=</span> <span class="s2">&quot;prod&quot;</span>
+        <span class="n">long_name</span> <span class="o">=</span> <span class="s2">&quot;Production&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <strong>aggregated pipeline configuration</strong> will now be:</p>
+<div class="code groovy highlight-default"><div class="highlight"><pre><span></span><span class="n">application_environments</span><span class="p">{</span>
+    <span class="n">dev</span><span class="p">{</span>
+        <span class="n">short_name</span> <span class="o">=</span> <span class="s2">&quot;tenant custom!&quot;</span>
+        <span class="n">long_name</span> <span class="o">=</span> <span class="s2">&quot;my own!&quot;</span>
+    <span class="p">}</span>
+    <span class="n">prod</span><span class="p">{</span>
+        <span class="n">short_name</span> <span class="o">=</span> <span class="s2">&quot;prod&quot;</span>
+        <span class="n">long_name</span> <span class="o">=</span> <span class="s2">&quot;Production&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>What Happened?</strong></p>
+<p>In this case, the tenant’s application_environments totally replaces
+the organization’s defined application_environments.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The ability to use the <code class="docutils literal"><span class="pre">merge</span></code> and <code class="docutils literal"><span class="pre">override</span></code> keys is not specific to any
+field in particular.  You can set these values anywhere in the file, and they will
+be handled appropriately.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="default-step-implementation.html" class="btn btn-neutral float-right" title="Default Step Implementations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="app-image-repo.html" class="btn btn-neutral" title="Application Image Repository" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Booz Allen Hamilton. All Rights Reserved. 
+  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Other Versions</span>
+        v: steven-terrana-patch-1
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>Branches</dt>
+            <dd><a href="../../../master/pages/for-sdp-users/conditional-inheritance.html">master</a></dd>
+            <dd><a href="../../../owasp-dep-check-lib/pages/for-sdp-users/conditional-inheritance.html">owasp-dep-check-lib</a></dd>
+            <dd><a href="conditional-inheritance.html">steven-terrana-patch-1</a></dd>
+        </dl>
+    </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

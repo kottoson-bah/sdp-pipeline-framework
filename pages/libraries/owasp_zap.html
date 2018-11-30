@@ -32,7 +32,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Protractor" href="protractor.html" />
-    <link rel="prev" title="OpenShift" href="openshift.html" /> 
+    <link rel="prev" title="&lt;no title&gt;" href="owasp_dep_check.html" /> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -175,9 +175,9 @@
 <div class="section" id="owasp-zap">
 <h1>OWASP ZAP<a class="headerlink" href="#owasp-zap" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project">OWASP Zed Attack Proxy (ZAP)</a> is a tool that can help
-you automatically find security vulnerabilities in your web applications while
-you are developing and testing your applications. Its also a great tool for
-experienced pentesters to use for manual security testing.</p>
+you <strong>automatically find security vulnerabilities</strong> in your web applications while
+you are developing and testing your applications. It’s also a great tool for
+experienced penetration testers for manual security testing.</p>
 <div class="section" id="steps-contributed">
 <h2>Steps Contributed<a class="headerlink" href="#steps-contributed" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -204,7 +204,7 @@ experienced pentesters to use for manual security testing.</p>
 <tbody valign="top">
 <tr class="row-even"><td>target</td>
 <td>The target url to pentest</td>
-<td>none</td>
+<td>None</td>
 <td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>vulnerability_threshold</td>
@@ -214,7 +214,7 @@ experienced pentesters to use for manual security testing.</p>
 </tr>
 </tbody>
 </table>
-<p><code class="code docutils literal"><span class="pre">target</span></code> is set to <code class="code docutils literal"><span class="pre">env.FRONTEND_URL</span></code> if available. If not then it uses the provided
+<p><code class="code docutils literal"><span class="pre">target</span></code> is set to <code class="code docutils literal"><span class="pre">env.FRONTEND_URL</span></code> if its value is non-null. Otherwise it uses the provided
 URL. If no URL is provided an error is thrown.</p>
 <div class="section" id="example-configuration-snippet">
 <h3>Example Configuration Snippet<a class="headerlink" href="#example-configuration-snippet" title="Permalink to this headline">¶</a></h3>
@@ -245,7 +245,7 @@ URL. If no URL is provided an error is thrown.</p>
         <a href="protractor.html" class="btn btn-neutral float-right" title="Protractor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="openshift.html" class="btn btn-neutral" title="OpenShift" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="owasp_dep_check.html" class="btn btn-neutral" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -255,7 +255,7 @@ URL. If no URL is provided an error is thrown.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Booz Allen Hamilton. All Rights Reserved. 
-  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl
+  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl.
 
     </p>
   </div>
@@ -280,6 +280,8 @@ URL. If no URL is provided an error is thrown.</p>
         <dl>
             <dt>Branches</dt>
             <dd><a href="../../master/pages/libraries/owasp_zap.html">master</a></dd>
+            <dd><a href="../../owasp-dep-check-lib/pages/libraries/owasp_zap.html">owasp-dep-check-lib</a></dd>
+            <dd><a href="../../steven-terrana-patch-1/pages/libraries/owasp_zap.html">steven-terrana-patch-1</a></dd>
         </dl>
     </div>
 </div>
@@ -287,23 +289,20 @@ URL. If no URL is provided an error is thrown.</p>
 
   
 
-    
-    
-      <script type="text/javascript">
-          var DOCUMENTATION_OPTIONS = {
-              URL_ROOT:'../../',
-              VERSION:'',
-              LANGUAGE:'None',
-              COLLAPSE_INDEX:false,
-              FILE_SUFFIX:'.html',
-              HAS_SOURCE:  true,
-              SOURCELINK_SUFFIX: '.txt'
-          };
-      </script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-    
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
 
   
 

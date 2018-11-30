@@ -174,7 +174,7 @@
 
 <div class="section" id="sonarqube">
 <h1>SonarQube<a class="headerlink" href="#sonarqube" title="Permalink to this headline">¶</a></h1>
-<p>SonarQube is a tool used for <strong>static code analysis</strong>. Static code analysis is validating code as-written against
+<p><a class="reference external" href="https://www.sonarqube.org/about/">SonarQube</a> is a tool used for <strong>static code analysis</strong>. Static code analysis is validating code as-written against
 industry standard practices.  It will help you find best practice violations and potential security vulnerabilities.</p>
 <p>Organizations can define Quality Profiles which are custom rule profiles that projects must use.  Quality Gates are then
 rules defining the organizational policies for code quality. SDP will, by default, fail the build if the Quality Gate fails.</p>
@@ -186,8 +186,8 @@ rules defining the organizational policies for code quality. SDP will, by defaul
 </div>
 <div class="section" id="library-configuration-options">
 <h2>Library Configuration Options<a class="headerlink" href="#library-configuration-options" title="Permalink to this headline">¶</a></h2>
-<table border="1" class="docutils" id="id1">
-<caption><span class="caption-text">SonarQube Library Configuration Options</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<table border="1" class="docutils" id="id2">
+<caption><span class="caption-text">SonarQube Library Configuration Options</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="33%" />
 <col width="33%" />
@@ -224,7 +224,7 @@ rules defining the organizational policies for code quality. SDP will, by defaul
 <div class="section" id="sonar-scanner-configurations">
 <h2>Sonar Scanner Configurations<a class="headerlink" href="#sonar-scanner-configurations" title="Permalink to this headline">¶</a></h2>
 <p>Extra configuration options are available by leveraging SonarQube’s <a class="reference external" href="https://docs.sonarqube.org/display/SONAR/Analysis+Parameters">sonar-project.properties</a> file.
-the sonar-project.properties file should be added to root of the source repositoy.</p>
+The sonar-project.properties file should be added to root of the source repository.</p>
 </div>
 <div class="section" id="external-dependencies">
 <h2>External Dependencies<a class="headerlink" href="#external-dependencies" title="Permalink to this headline">¶</a></h2>
@@ -233,12 +233,6 @@ the sonar-project.properties file should be added to root of the source reposito
 <li>Jenkins must have a credential to access SonarQube, this is done by default when using the deployment script.</li>
 <li>The SonarQube URL must be configured in <code class="docutils literal"><span class="pre">Manage</span> <span class="pre">Jenkins</span> <span class="pre">&gt;</span> <span class="pre">Configure</span> <span class="pre">System</span></code></li>
 </ul>
-</div>
-<div class="section" id="troubleshooting">
-<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="faq">
-<h2>FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -263,7 +257,7 @@ the sonar-project.properties file should be added to root of the source reposito
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Booz Allen Hamilton. All Rights Reserved. 
-  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl
+  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl.
 
     </p>
   </div>
@@ -288,6 +282,8 @@ the sonar-project.properties file should be added to root of the source reposito
         <dl>
             <dt>Branches</dt>
             <dd><a href="../../master/pages/libraries/sonarqube.html">master</a></dd>
+            <dd><a href="../../owasp-dep-check-lib/pages/libraries/sonarqube.html">owasp-dep-check-lib</a></dd>
+            <dd><a href="../../steven-terrana-patch-1/pages/libraries/sonarqube.html">steven-terrana-patch-1</a></dd>
         </dl>
     </div>
 </div>
@@ -295,23 +291,20 @@ the sonar-project.properties file should be added to root of the source reposito
 
   
 
-    
-    
-      <script type="text/javascript">
-          var DOCUMENTATION_OPTIONS = {
-              URL_ROOT:'../../',
-              VERSION:'',
-              LANGUAGE:'None',
-              COLLAPSE_INDEX:false,
-              FILE_SUFFIX:'.html',
-              HAS_SOURCE:  true,
-              SOURCELINK_SUFFIX: '.txt'
-          };
-      </script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-    
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
 
   
 

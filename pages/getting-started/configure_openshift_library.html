@@ -181,8 +181,8 @@
 <li>A project per application environment per isolated tenant</li>
 <li>An installation of Tiller per tenant</li>
 <li>An OpenShift project to store the image streams for archived container images</li>
-<li>Configure RBAC for these projects.</li>
-<li>Create a Helm configuration repository to store the chart(s) for a tenant (or group of tenants)</li>
+<li>RBAC configuration for these projects.</li>
+<li>A Helm configuration repository to store the chart(s) for a tenant (or group of tenants)</li>
 </ul>
 <div class="section" id="preparing-the-openshift-environment">
 <h2>Preparing The OpenShift Environment<a class="headerlink" href="#preparing-the-openshift-environment" title="Permalink to this headline">¶</a></h2>
@@ -331,10 +331,14 @@ applications using Helm from a chart stored in a GitHub repository.</p>
 <span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">origin</span> <span class="n">master</span>
 </pre></div>
 </div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">You can delete the contents of the templates directory &amp; update <em>Chart.yaml</em> to describe your application.</p>
-</div>
+<p>Once that’s done you should</p>
+<ol class="arabic simple">
+<li>Delete the yaml files that were automatically created when <code class="docutils literal"><span class="pre">helm</span> <span class="pre">create</span></code> was called. These are example helm templates, and we don’t need them.</li>
+<li>Delete the contents of templates/_helpers.tpl and templates/NOTES.txt. We want to keep those files, but provide our own content.</li>
+<li>Update <em>Chart.yaml</em> to properly describe your new chart.</li>
+</ol>
+<blockquote>
+<div>For more information on Helm charts, check out the <a href="https://docs.helm.sh/developing_charts/" target="_blank">Helm documentation</a>.</div></blockquote>
 </div>
 <div class="section" id="sdp-helm-conventions">
 <h2>SDP Helm Conventions<a class="headerlink" href="#sdp-helm-conventions" title="Permalink to this headline">¶</a></h2>
@@ -431,22 +435,22 @@ applications using Helm from a chart stored in a GitHub repository.</p>
         <span class="n">labels</span><span class="p">:</span>
           <span class="n">app</span><span class="p">:</span> <span class="n">frontend</span>
           <span class="n">deploymentconfig</span><span class="p">:</span> <span class="n">frontend</span>
-  <span class="n">spec</span><span class="p">:</span>
-    <span class="n">containers</span><span class="p">:</span>
-    <span class="o">-</span> <span class="n">image</span><span class="p">:</span> <span class="n">docker</span><span class="o">-</span><span class="n">registry</span><span class="o">.</span><span class="n">default</span><span class="o">.</span><span class="n">svc</span><span class="p">:</span><span class="mi">5000</span><span class="o">/</span><span class="n">demo</span><span class="o">/</span><span class="n">sdp</span><span class="o">-</span><span class="n">website</span><span class="p">:{{</span> <span class="o">.</span><span class="n">Values</span><span class="o">.</span><span class="n">image_shas</span><span class="o">.</span><span class="n">sdp_website</span> <span class="p">}}</span>
-      <span class="n">name</span><span class="p">:</span> <span class="n">frontend</span>
-      <span class="n">volumeMounts</span><span class="p">:</span>
-          <span class="o">-</span> <span class="n">mountPath</span><span class="p">:</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">cache</span><span class="o">/</span><span class="n">nginx</span>
-            <span class="n">name</span><span class="p">:</span> <span class="n">nginx</span><span class="o">-</span><span class="n">cache</span>
-    <span class="n">ports</span><span class="p">:</span>
-    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">web</span>
-      <span class="n">protocol</span><span class="p">:</span> <span class="n">TCP</span>
-      <span class="n">port</span><span class="p">:</span> <span class="mi">8080</span>
-      <span class="n">targetPort</span><span class="p">:</span> <span class="mi">8080</span>
-      <span class="n">nodePort</span><span class="p">:</span> <span class="mi">0</span>
-    <span class="n">volumes</span><span class="p">:</span>
-    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">nginx</span><span class="o">-</span><span class="n">cache</span>
-      <span class="n">emptyDir</span><span class="p">:</span> <span class="p">{}</span>
+      <span class="n">spec</span><span class="p">:</span>
+        <span class="n">containers</span><span class="p">:</span>
+        <span class="o">-</span> <span class="n">image</span><span class="p">:</span> <span class="n">docker</span><span class="o">-</span><span class="n">registry</span><span class="o">.</span><span class="n">default</span><span class="o">.</span><span class="n">svc</span><span class="p">:</span><span class="mi">5000</span><span class="o">/</span><span class="n">demo</span><span class="o">/</span><span class="n">sdp</span><span class="o">-</span><span class="n">website</span><span class="p">:{{</span> <span class="o">.</span><span class="n">Values</span><span class="o">.</span><span class="n">image_shas</span><span class="o">.</span><span class="n">sdp_website</span> <span class="p">}}</span>
+          <span class="n">name</span><span class="p">:</span> <span class="n">frontend</span>
+          <span class="n">volumeMounts</span><span class="p">:</span>
+              <span class="o">-</span> <span class="n">mountPath</span><span class="p">:</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">cache</span><span class="o">/</span><span class="n">nginx</span>
+                <span class="n">name</span><span class="p">:</span> <span class="n">nginx</span><span class="o">-</span><span class="n">cache</span>
+        <span class="n">ports</span><span class="p">:</span>
+        <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">web</span>
+          <span class="n">protocol</span><span class="p">:</span> <span class="n">TCP</span>
+          <span class="n">port</span><span class="p">:</span> <span class="mi">8080</span>
+          <span class="n">targetPort</span><span class="p">:</span> <span class="mi">8080</span>
+          <span class="n">nodePort</span><span class="p">:</span> <span class="mi">0</span>
+        <span class="n">volumes</span><span class="p">:</span>
+        <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">nginx</span><span class="o">-</span><span class="n">cache</span>
+          <span class="n">emptyDir</span><span class="p">:</span> <span class="p">{}</span>
 
 <span class="o">-</span> <span class="n">kind</span><span class="p">:</span> <span class="n">Service</span>
   <span class="n">apiVersion</span><span class="p">:</span> <span class="n">v1</span>
@@ -525,7 +529,7 @@ E.g. if you had created your application environments using <code class="docutil
   <div role="contentinfo">
     <p>
         &copy; Copyright 2018, Booz Allen Hamilton. All Rights Reserved. 
-  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl
+  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl.
 
     </p>
   </div>
@@ -550,6 +554,8 @@ E.g. if you had created your application environments using <code class="docutil
         <dl>
             <dt>Branches</dt>
             <dd><a href="../../master/pages/getting-started/configure_openshift_library.html">master</a></dd>
+            <dd><a href="../../owasp-dep-check-lib/pages/getting-started/configure_openshift_library.html">owasp-dep-check-lib</a></dd>
+            <dd><a href="../../steven-terrana-patch-1/pages/getting-started/configure_openshift_library.html">steven-terrana-patch-1</a></dd>
         </dl>
     </div>
 </div>
@@ -557,23 +563,20 @@ E.g. if you had created your application environments using <code class="docutil
 
   
 
-    
-    
-      <script type="text/javascript">
-          var DOCUMENTATION_OPTIONS = {
-              URL_ROOT:'../../',
-              VERSION:'',
-              LANGUAGE:'None',
-              COLLAPSE_INDEX:false,
-              FILE_SUFFIX:'.html',
-              HAS_SOURCE:  true,
-              SOURCELINK_SUFFIX: '.txt'
-          };
-      </script>
-        <script type="text/javascript" src="../../_static/jquery.js"></script>
-        <script type="text/javascript" src="../../_static/underscore.js"></script>
-        <script type="text/javascript" src="../../_static/doctools.js"></script>
-    
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
 
   
 

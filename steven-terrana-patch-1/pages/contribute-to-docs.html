@@ -1,0 +1,302 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Contribute to the Docs &mdash; Solutions Delivery Platform  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/banner.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="How To Configure Selenium Grid" href="how-to/selenium_grid_configurations.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Solutions Delivery Platform
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting-started/index.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="libraries/index.html">Pipeline Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="for-framework-devs/index.html">For Framework Developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="for-library-devs/index.html">For Library Developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="for-sdp-users/index.html">For SDP Users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how-to/index.html">How-To’s</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Contribute to the Docs</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Solutions Delivery Platform</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Contribute to the Docs</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/pages/contribute-to-docs.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+
+
+    
+    
+
+
+
+    <p class="scv-banner scv-sphinx_rtd_theme"><a href="../../master/pages/contribute-to-docs.html"><b>Warning:</b> This document is for the development version of Solutions Delivery Platform. The main version is master.</a></p>
+<div class="section" id="contribute-to-the-docs">
+<h1>Contribute to the Docs<a class="headerlink" href="#contribute-to-the-docs" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="local-development-with-docker">
+<h2>Local Development With Docker<a class="headerlink" href="#local-development-with-docker" title="Permalink to this headline">¶</a></h2>
+<p>A docker image has been developed for working with docs locally. This way, you don’t have to
+install the python packages required, and you’ll get the benefits of hot reloading of your
+document changes.</p>
+<p>While working, if a new library page is created you’ll have to restart the container to incorporate
+that page.</p>
+<p><strong>Clone the pipeline-framework repository</strong></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1">## cloning via ssh</span>
+git clone git@github.com:boozallen/sdp-pipeline-framework.git
+<span class="c1">## cloning via https</span>
+git clone https://github.com/boozallen/sdp-pipeline-framework.git
+</pre></div>
+</div>
+<p><strong>Create a branch for your changes</strong></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>git checkout -B &lt;my-awesome-doc-contribution&gt;
+</pre></div>
+</div>
+<p><strong>Run the Sphinx documentation locally</strong></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1">## from the root of pipeline-framework</span>
+docker build -f docs/Dockerfile -t sdp-docs docs
+docker run --name sdp-docs -d -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/sdp -p <span class="m">8000</span>:8000 sdp-docs
+</pre></div>
+</div>
+<p><strong>Update the documentation. Your changes will automatically appear on http://localhost:8000</strong></p>
+<p><strong>Once complete, push your branch</strong></p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>git push -u origin &lt;my-awesome-doc-contribution&gt;
+</pre></div>
+</div>
+<p><strong>Create a Pull Request</strong></p>
+<p><strong>Done! Your changes will be reviewed by an SDP team member</strong></p>
+</div>
+<div class="section" id="restructuredtext-syntax">
+<h2>ReStructuredText Syntax<a class="headerlink" href="#restructuredtext-syntax" title="Permalink to this headline">¶</a></h2>
+<p>Go read some <a class="reference external" href="http://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html">documentation</a> on RST syntax.</p>
+</div>
+<div class="section" id="local-development-without-docker">
+<h2>Local Development Without Docker<a class="headerlink" href="#local-development-without-docker" title="Permalink to this headline">¶</a></h2>
+<p>You’ll need python installed and some pip dependencies.</p>
+<p>I currently have <code class="docutils literal"><span class="pre">Python</span> <span class="pre">2.7.15</span></code> installed.</p>
+<p>To install the pip dependencies, run</p>
+<div class="code shell highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">sphinx</span> <span class="n">sphinx</span><span class="o">-</span><span class="n">autobuild</span> <span class="n">sphinx</span><span class="o">-</span><span class="n">rtd</span><span class="o">-</span><span class="n">theme</span> <span class="n">recommonmark</span>
+
+<span class="c1"># need a specific version of the versioning tool because of a sphinx breaking change</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">sizmailov</span><span class="o">/</span><span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">versioning</span><span class="nd">@conditionally_run_setup_py</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="deploying-the-docs">
+<h2>Deploying the Docs<a class="headerlink" href="#deploying-the-docs" title="Permalink to this headline">¶</a></h2>
+<p>From the root of the <code class="docutils literal"><span class="pre">pipeline-framework</span></code> repository, run:</p>
+<div class="code shell highlight-default"><div class="highlight"><pre><span></span><span class="n">sphinx</span><span class="o">-</span><span class="n">versioning</span> <span class="n">push</span> <span class="o">--</span><span class="n">show</span><span class="o">-</span><span class="n">banner</span> <span class="n">docs</span> <span class="n">gh</span><span class="o">-</span><span class="n">pages</span> <span class="o">.</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="how-to/selenium_grid_configurations.html" class="btn btn-neutral" title="How To Configure Selenium Grid" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Booz Allen Hamilton. All Rights Reserved. 
+  This software package is licensed under the Booz Allen Public License. The license can be found in the License file or at http://boozallen.github.io/licenses/bapl.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        <span class="fa fa-book"> Other Versions</span>
+        v: steven-terrana-patch-1
+        <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>Branches</dt>
+            <dd><a href="../../master/pages/contribute-to-docs.html">master</a></dd>
+            <dd><a href="../../owasp-dep-check-lib/pages/contribute-to-docs.html">owasp-dep-check-lib</a></dd>
+            <dd><a href="contribute-to-docs.html">steven-terrana-patch-1</a></dd>
+        </dl>
+    </div>
+</div>
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
